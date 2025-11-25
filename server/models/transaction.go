@@ -8,4 +8,6 @@ type Transaction struct {
 	Title	string	`gorm:"type:varchar(100)" json:"title"`
 	Amount float64 `gorm:"type:decimal(10,2);not null" json:"amount"`
 	Category TransactionCategory `gorm:"type:varchar(20)" json:"category"`
+
+	User *User `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE" json:"user,omitempty"`
 }
