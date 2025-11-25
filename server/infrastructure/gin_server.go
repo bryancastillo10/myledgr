@@ -3,6 +3,7 @@ package infrastructure
 import (
 	"log"
 	"myledgr-server/infrastructure/routes"
+	"myledgr-server/middleware"
 	"os"
 
 	"github.com/gin-contrib/cors"
@@ -26,7 +27,7 @@ func RunGin(corsConfig cors.Config) {
 		}
 	}
 
-	// r.Use(middleware.ErrorHandler())
+	r.Use(middleware.ErrorHandler())
 
 	routes.RegisterRoutes(r,DB)
 
