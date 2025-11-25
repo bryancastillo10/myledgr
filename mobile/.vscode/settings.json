@@ -1,0 +1,44 @@
+{
+  // ---- GENERAL EDITOR SETTINGS ----
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // ---- ACTIONS ON SAVE ----
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit", // ESLint fixes
+    "source.organizeImports": "explicit", // Sort + group imports
+    "source.sortMembers": "explicit" // TS member sorting (optional)
+  },
+
+  // ---- PRETTIER SETTINGS ----
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.semi": true,
+
+  // ---- ESLINT SETTINGS ----
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.run": "onSave",
+
+  // ---- REACT NATIVE SPECIFIC ----
+  // Avoid Prettier conflicting with Metro bundler errors
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+
+  // ---- FILE-WATCHING FOR EXPO ----
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+
+  // ---- IMPORT SORTING ----
+  "typescript.preferences.importModuleSpecifier": "relative",
+
+  // Optional: Expo Router (if using)
+  "path-autocomplete.extensionOnImport": true
+}
