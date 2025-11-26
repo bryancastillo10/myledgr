@@ -2,7 +2,6 @@ package infrastructure
 
 import (
 	"log"
-	"myledgr-server/infrastructure/routes"
 	"myledgr-server/middleware"
 	"os"
 
@@ -29,7 +28,7 @@ func RunGin(corsConfig cors.Config) {
 
 	r.Use(middleware.ErrorHandler())
 
-	routes.RegisterRoutes(r,DB)
+	RegisterRoutes(r,DB)
 
 	err := r.Run("0.0.0.0:" + port)
 	if err != nil {
