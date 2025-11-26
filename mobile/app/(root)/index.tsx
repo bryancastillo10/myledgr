@@ -2,6 +2,7 @@ import { View, TouchableOpacity, Text } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "@/assets/styles/home";
+import { BalanceCard } from "@/components/ui/BalanceCard";
 
 export default function Page() {
   return (
@@ -25,7 +26,17 @@ export default function Page() {
             </TouchableOpacity>
           </View>
         </View>
+
+        {/* Balance Card UI */}
+        <BalanceCard />
+
+        <View style={styles.transactionsHeaderContainer}>
+          <Text style={styles.sectionTitle}>Recent Transactions</Text>
+        </View>
       </View>
+
+      {/* List of Transactions */}
+      {/* Flatlist */}
     </View>
   );
 }
