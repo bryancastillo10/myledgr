@@ -1,6 +1,9 @@
 package transaction
 
-import "gorm.io/gorm"
+import (
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+)
 
 type Handler struct {
 	service *Service
@@ -12,22 +15,22 @@ func NewHandler (db *gorm.DB) *Handler {
 	return &Handler{service: service}
 }
 
-func (h *Handler) CreateTransaction() {
+func (h *Handler) CreateTransaction(c *gin.Context) {
 
 }
 
-func (h *Handler) GetTransactionsByUser() {
+func (h *Handler) GetTransactionsByUser(c *gin.Context) {
 
 }
 
-func (h *Handler) GetTransactionSummaryByUser() {
+func (h *Handler) GetTransactionSummaryByUser(c *gin.Context) {
 
 }
 
-func (h *Handler) UpdateTransaction() {
+func (h *Handler) UpdateTransaction(c *gin.Context) {
 
 }
 
-func (h *Handler) DeleteTransaction() {
+func (h *Handler) DeleteTransaction(c *gin.Context) {
 
 }
