@@ -9,8 +9,8 @@ func SyncDatabaseSchema() {
 	log.Println("Syncing declared database schema...")
 
 	err := DB.AutoMigrate(
-			&models.User{},
-			&models.Transaction{},
+		&models.User{},
+		&models.Transaction{},
 	)
 
 	if err != nil {
