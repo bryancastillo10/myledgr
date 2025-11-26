@@ -3,13 +3,13 @@ package models
 type Role string
 
 const (
-	Admin Role = "ADMIN"
-	Public Role = "PUBLIC"	
+	Admin  Role = "ADMIN"
+	Public Role = "PUBLIC"
 )
 
 type TransactionCategory string
 
 const (
-	Debit TransactionCategory = "DEBIT"
+	Debit  TransactionCategory = "DEBIT"
 	Credit TransactionCategory = "CREDIT"
 )

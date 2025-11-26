@@ -28,7 +28,7 @@ func RunGin(corsConfig cors.Config) {
 
 	r.Use(middleware.ErrorHandler())
 
-	RegisterRoutes(r,DB)
+	RegisterRoutes(r, DB)
 
 	err := r.Run("0.0.0.0:" + port)
 	if err != nil {

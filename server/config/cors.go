@@ -8,11 +8,11 @@ import (
 
 func CORS() cors.Config {
 	return cors.Config{
-		AllowOrigins: []string{"http://localhost:8080"},
-		AllowMethods: []string{"GET","POST","PUT","DELETE"},
-		AllowHeaders: []string{"Origin","Content-Type","Authorization"},
-		ExposeHeaders: []string{"Content-Length"},
+		AllowOrigins:     []string{"http://localhost:8080"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
-		MaxAge: 4 * time.Hour,
+		MaxAge:           4 * time.Hour,
 	}
 }

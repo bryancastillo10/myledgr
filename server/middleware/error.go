@@ -15,7 +15,7 @@ func ErrorHandler() gin.HandlerFunc {
 		c.Next()
 
 		if len(c.Errors) > 0 {
-			err := c.Errors.Last().Err		
+			err := c.Errors.Last().Err
 			log.Printf("Error: %v", err)
 
 			debug := os.Getenv("GIN_MODE") != "release"
@@ -30,18 +30,18 @@ func ErrorHandler() gin.HandlerFunc {
 					resp["error"] = appError.Err.Error()
 				}
 				c.JSON(appError.Code, resp)
-				return 
+				return
 			}
 
 			resp := gin.H{
-				"success":false,
-				"message":"Internal server error",
+				"success": false,
+				"message": "Internal server error",
 			}
 
 			if debug {
 				resp["error"] = err.Error()
 			}
-			c.JSON(http.StatusInternalServerError,resp)
+			c.JSON(http.StatusInternalServerError, resp)
 		}
 	}
 }
