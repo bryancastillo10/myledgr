@@ -40,9 +40,30 @@ func (h *Handler) SignUp(c *gin.Context) {
 }
 
 func (h *Handler) SignIn(c *gin.Context) {
+	req, err := http_helper.BindJSON[SignInRequest](c)
+	if err != nil {
+		c.Error(err)
+		return
+	}
 
+	user, token, err := h.service.SignIn(*req)
+	if err != nil {
+		c.Error(err)
+		return
+	}
+
+	utils.SetCookie(c, token, 3600*5)
+
+	c.JSON(200, gin.H{
+		"message": "Signed In Successfully",
+		"user":    user,
+	})
 }
 
 func (h *Handler) SignOut(c *gin.Context) {
+	utils.ClearCookie(c)
 
+	c.JSON(200, gin.H{
+		"message": "You have signed out successfully",
+	})
 }
