@@ -35,17 +35,25 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 		return nil, "", appErr.NewBadRequest("Password does not match",nil)
 	}
 
-	// Generate UserID
+	// Hash Password
+	hashedPwd, err := utils.HashPassword(req.Password) 
+	if err != nil {
+		return nil,"", appErr.NewInternal("Failed to hash password", err)
+	}
+	
+
+	// Generate UserID and Prepare User struct
 	uid := utils.GenerateUUID()
 
 	newUser := &models.User{
 		ID: uid,
 		Username: req.Username,
 		Email:req.Email,
-		Password: req.Password,
+		Password: hashedPwd,
 		Role:"PUBLIC",
 	}
 
+	// Create User at Repo Layer
 	createdUser, err := s.repo.CreateUser(newUser)
 	if err != nil {
 		return nil, "", appErr.NewInternal("Failed to create a new user at the database",err)
@@ -64,8 +72,34 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 	return &signUpRes,token, nil
 }
 
-func (s *Service) SignIn() {
+func (s *Service) SignIn(req SignInRequest) (*JWTAuthResponse, string, error) {
+	if req.Email == "" || req.Password == "" {
+		return nil, "", appErr.NewBadRequest("Missing required fields", nil)
+	}
 
+	user, err := s.repo.FindUserByEmail(req.Email)
+	if err != nil {
+		return nil, "", appErr.NewNotFound("Failed to verify if user exists", err)
+	}
+	if user == nil {
+		return nil, "", appErr.NewBadRequest("Invalid email or password", nil)
+	}
+
+	if err := utils.ValidatePassword(user.Password, req.Password); err != nil {
+		return nil, "", appErr.NewBadRequest("Invalid email or password", err)
+	}
+
+	token, err := utils.GenerateJWT(user)
+	if err != nil {
+		return nil, "", appErr.NewInternal("Failed to generate token", err)
+	}
+
+	userResp := JWTAuthResponse{
+		ID:   user.ID.String(),
+		Role: string(user.Role),
+	}
+
+	return &userResp, token, nil
 }
 
 func (s *Service) SignOut() {
