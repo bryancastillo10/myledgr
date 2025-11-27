@@ -61,5 +61,9 @@ func (h *Handler) SignIn(c *gin.Context) {
 }
 
 func (h *Handler) SignOut(c *gin.Context) {
+	utils.ClearCookie(c)
 
+	c.JSON(200, gin.H{
+		"message": "You have signed out successfully",
+	})
 }

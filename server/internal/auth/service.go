@@ -101,7 +101,3 @@ func (s *Service) SignIn(req SignInRequest) (*JWTAuthResponse, string, error) {
 
 	return &userResp, token, nil
 }
-
-func (s *Service) SignOut() {
-
-}
