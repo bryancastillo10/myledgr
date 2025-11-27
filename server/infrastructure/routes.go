@@ -19,7 +19,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	authGroup := r.Group("/auth")
 	{
 		authGroup.POST("/signin", authHandler.SignIn)
-		authGroup.POST("/signup", authHandler.SignOut)
+		authGroup.POST("/signup", authHandler.SignUp)
 		authGroup.POST("/signout", authHandler.SignOut)
 	}
 
