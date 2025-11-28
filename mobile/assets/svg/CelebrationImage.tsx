@@ -1,9 +1,17 @@
-import { Svg, G, Path } from "react-native-svg";
+import {
+  Svg,
+  G,
+  Path,
+  Polygon,
+  Ellipse,
+  Polyline,
+  Line,
+} from "react-native-svg";
 import { SvgProps } from "@/assets/svg";
 
 const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
   return (
-    <Svg viewBox="0 0 500 500" width={size}>
+    <Svg viewBox="0 0 500 500" width={size} height={size}>
       <G id="freepik--background-simple--inject-218">
         <Path
           d="M441,207.67c-8-30.66-21.31-59.24-35.23-78.85C372.25,81.7,294.45,61,240.7,80.7c-45.8,16.82-61.84,67.68-101.84,92-36.81,22.4-70.21,40.67-83.09,83.38-27.19,90.23,80.35,162.16,160.71,139.27,25.36-7.22,46.8-22.42,73.85-22.51,54.88-.19,74.21,7.34,118.61-22.31C452.69,321.36,455,261.35,441,207.67Z"
@@ -36,15 +44,15 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         ></Path>
       </G>
       <G id="freepik--Desk--inject-218">
-        <polygon
+        <Polygon
           points="418.42 291.4 414.18 291.4 222.71 291.4 218.47 291.4 218.47 299.88 222.71 299.88 222.71 386.08 414.18 386.08 414.18 299.88 418.42 299.88 418.42 291.4"
           fill={color}
-        ></polygon>
-        <polygon
+        ></Polygon>
+        <Polygon
           points="418.42 291.4 414.18 291.4 222.71 291.4 218.47 291.4 218.47 299.88 222.71 299.88 222.71 386.08 414.18 386.08 414.18 299.88 418.42 299.88 418.42 291.4"
           fill="#fff"
           opacity="0.5"
-        ></polygon>
+        ></Polygon>
         <Path
           d="M227.83,336.45h52.22V308.54H227.83Zm1.06-26.85H279v25.79h-50.1Z"
           fill="#fff"
@@ -69,27 +77,27 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
           d="M357.54,373.89h52.22V346H357.54ZM358.6,347h50.1v25.79H358.6Z"
           fill="#fff"
         ></Path>
-        <ellipse
+        <Ellipse
           cx="254.5"
           cy="322.85"
           rx="8.48"
           ry="3.18"
           fill="#fff"
-        ></ellipse>
-        <ellipse
+        ></Ellipse>
+        <Ellipse
           cx="319.04"
           cy="322.85"
           rx="8.48"
           ry="3.18"
           fill="#fff"
-        ></ellipse>
-        <ellipse
+        ></Ellipse>
+        <Ellipse
           cx="385.46"
           cy="322.85"
           rx="8.48"
           ry="3.18"
           fill="#fff"
-        ></ellipse>
+        ></Ellipse>
         <Path
           d="M254.5,357.11c-4.68,0-8.48,1.43-8.48,3.18s3.8,3.18,8.48,3.18,8.48-1.42,8.48-3.18S259.18,357.11,254.5,357.11Z"
           fill="#fff"
@@ -115,21 +123,21 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         ></Path>
       </G>
       <G id="freepik--character-4--inject-218">
-        <ellipse
+        <Ellipse
           cx="397.41"
           cy="397.68"
           rx="45.82"
           ry="9.84"
           fill={color}
-        ></ellipse>
+        ></Ellipse>
         <G style="opacity:0.7000000000000001">
-          <ellipse
+          <Ellipse
             cx="397.41"
             cy="397.68"
             rx="45.82"
             ry="9.84"
             fill="#fff"
-          ></ellipse>
+          ></Ellipse>
         </G>
         <Path
           d="M354.22,193.58s0,3.37-7-2.14-8.27-10.71,1.53-16.53c7.52-4.47,19.58-6.07,25.93,1.37,4.84,5.67,4.93,14.49,10.2,19.75,4.89,4.9,16.22,6.13,20.81,16.84s-3.06,8.88.31,19.6,12.25,11.32,6.73,22-15.3,17.45-30.3,10.71-10.72-17.45-20.51-23.88C343.57,229.33,341.13,210.74,354.22,193.58Z"
@@ -211,7 +219,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M389.73,225.73l-.91,6.43S387,246.85,387,252.06s7,16.53,8.57,32.76-.92,26.94-.92,26.94c-15-3.06-19.29,2.75-19.29,2.75s-13.16-16.22-15-26.63,2.76-21.13,3.37-29.39-4.59-14.7-9.49-24.19-5.2-19.59.31-20.51,13.47-.31,13.47-.31,12.55.92,18.06,2.45,5.82,4.6,5.82,4.6"
           fill={color}
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
@@ -234,21 +242,21 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M363.1,208s3.37,7.35,3.37,8.58,6.43,7.34,8.57,5.81.61-5.2-.92-8.57-4.59-8.88-4.59-8.88A8.89,8.89,0,0,1,363.1,208Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M355.45,182.26l-4.6,10.1s3.06,8.88,6.43,13.16,8,4.6,10.41,3.07c4.74-3,2.45-15.31,2.45-15.31S356.67,188.07,355.45,182.26Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M388.2,216.55a126.26,126.26,0,0,1,14.21,8.34c5.62,3.86,20,19.19,17.91,23.17s-26.86,18-28.39,18-3.42-2-3.42-2-2.19-3.05-3.41-3.05.86-2.86,2.69-3.78,4.67,5.57,4.67,5.57,14.65-14.52,15.57-17.59-22.28-13.4-22.28-13.4"
           fill={color}
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></Path>
@@ -262,7 +270,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M354.53,213.79s-8,1.53-7.66,8.27-1.22,42.86,1.84,43.78,29.7-22.35,29.7-22.35,5.81,1.83,7,1.22.92-2.14,1.83-4.59,1.84-2.76-2.44-2.45c-1.9.14-4.78-.13-6.46,1-2.77,1.81-4.38,4.72-7.28,6.59q-5.69,3.65-11.65,6.87c-6,3.22-3.72-9.58-3.44-12.39.4-4.16.94-8.32,1.58-12.45"
           fill={color}
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
@@ -296,21 +304,21 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         ></Path>
       </G>
       <G id="freepik--character-3--inject-218">
-        <ellipse
+        <Ellipse
           cx="296.74"
           cy="397.68"
           rx="45.82"
           ry="9.84"
           fill={color}
-        ></ellipse>
+        ></Ellipse>
         <G style="opacity:0.7000000000000001">
-          <ellipse
+          <Ellipse
             cx="296.74"
             cy="397.68"
             rx="45.82"
             ry="9.84"
             fill="#fff"
-          ></ellipse>
+          ></Ellipse>
         </G>
         <Path
           d="M275.87,274.23s-4.67,13.66-5,15.46-7.16,24.57-8.66,39,.3,18.29,5.39,28.49,15.3,32.38,15.3,32.38l4.2-.3s-2.4-25.48-4.5-34.18-4.8-15.89-3.9-20.69,11.66-31.47,11.66-31.47,2.43,23.67,3.93,39.86,18.9,52.18,18.9,52.18l4.19-.6s.3-25.49-1.8-35.68-2.09-12.3-2.09-22.49-4.06-42.07-3.34-46.76c.81-5.31-1.19-12-1.19-12S283.07,279,275.87,274.23Z"
@@ -319,14 +327,14 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
         ></Path>
-        <polyline
+        <Polyline
           points="284.73 293.76 290.4 302.88 278.69 296.48"
           fill="none"
           stroke="#fff"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="0.5px"
-        ></polyline>
+        ></Polyline>
         <Path
           d="M303.77,280.47a7,7,0,0,0,.3,5.74,6.58,6.58,0,0,0,5.13,3.62s1.51,43.5,1.21,46.53"
           fill="none"
@@ -353,7 +361,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M333.54,255.87c-4.8-12.6-28.75-36.12-33-39.12s-12-2.7-12-2.7A22.74,22.74,0,0,1,274.2,206a78.77,78.77,0,0,1-12-20.48l-9.11,2c.21,1.34.45,2.7.72,4.06,3.9,19.49,13.82,32.39,16.52,37.18s4.94,39.49,4.94,44.29,2.1,6,10.79,6.6,21.14-.42,22.94-2.22.59-29.77.59-29.77,15.59,17.09,18.29,19.49S338.34,268.46,333.54,255.87Z"
           fill={color}
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></Path>
@@ -367,35 +375,35 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M296.55,212.18s2.92.52,3.61,3.1a16.6,16.6,0,0,1-.17,8.25c-.69,1.89-3.27,6.71-3.27,6.71s-6.54-7.91-7.4-8.43-10,1.89-10,1.89,1.2-7.39,4-10.14S294.83,211.84,296.55,212.18Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M299,206.34s-1.89,6.7-1.89,9.28-7.91,12.56-7.91,12.56l-3.27-13.42,1.38-8.77S294.31,210.12,299,206.34Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M284.85,186.22s-.51,9.11-2.06,12.89-.34,9.81,3.44,12,9.46-.17,12.72-2.41,4.82-6.88,6.54-12,1.89-12.56-3.61-15S284.85,186.22,284.85,186.22Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M302.53,201.23s-.88-.29-1.76-2.92,1.76-2.93,1.76-6.15-2.93-7-7-5.86a27.5,27.5,0,0,1-14.64-.59c-3.81-1.46-2.34-10.54,5.56-12.3s4.69,3.81,7.91,3.81,8.49-3.22,10-.58-.3,4.39,2,5.56,4.09,2.05,4.09,5.86-5.27,12.59-5.27,12.59S304.29,204.16,302.53,201.23Z"
           fill="#263238"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M301,203.07s2.23-4.47,4.3-3.61.69,3.26-1.55,5.16-3.61,1.2-3.61,1.2"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
@@ -409,7 +417,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M325.78,255.13s-3.7-.15-13.49-3.29c-8.94-2.88-11.54-5.44-13.84-6.48-1.67-.75-6.79-1.92-7.39-.12S294,247.3,294,247.3s.3.6,2.1,3.59,6,1.5,7.2,1.5,15.3,12.34,20.09,15,11.4.9,11.4-3.6S334.78,256,325.78,255.13Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
@@ -423,7 +431,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M313.23,394.92s-7.5,9-5.4,12.9,9-3.6,9.59-13.5Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
@@ -443,21 +451,21 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         ></Path>
       </G>
       <G id="freepik--character-2--inject-218">
-        <ellipse
+        <Ellipse
           cx="202.82"
           cy="397.68"
           rx="45.82"
           ry="9.84"
           fill={color}
-        ></ellipse>
+        ></Ellipse>
         <G style="opacity:0.7000000000000001">
-          <ellipse
+          <Ellipse
             cx="202.82"
             cy="397.68"
             rx="45.82"
             ry="9.84"
             fill="#fff"
-          ></ellipse>
+          ></Ellipse>
         </G>
         <Path
           d="M212.08,206.61s-3.63,7.51-3.63,10.62a16.29,16.29,0,0,0,.52,4.67l-9.59-9.07s3.63-8.29,3.89-9.85S212.08,206.61,212.08,206.61Z"
@@ -476,7 +484,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         <Path
           d="M214.41,186.91a6.67,6.67,0,0,0,5.44-4.14c1.56-3.89.26-11.93-7.77-13s-3.89,3.63-8.81,5.44-13.22.52-16.59,7.52.78,15.8-.26,18.66-11.14,7-15.81,15,4.41,25.14,3.63,29.28-7,7.78-3.63,15.81,15.55,12.7,25.66,6,4.92-30.84.78-37.32,3.72-19.33,8.12-23.74,1.21-13.32,1.21-16.69S214.41,186.91,214.41,186.91Z"
           fill={color}
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></Path>
@@ -642,21 +650,21 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
         ></Path>
       </G>
       <G id="freepik--character-1--inject-218">
-        <ellipse
+        <Ellipse
           cx="104.43"
           cy="397.68"
           rx="45.82"
           ry="9.84"
           fill={color}
-        ></ellipse>
+        ></Ellipse>
         <G style="opacity:0.7000000000000001">
-          <ellipse
+          <Ellipse
             cx="104.43"
             cy="397.68"
             rx="45.82"
             ry="9.84"
             fill="#fff"
-          ></ellipse>
+          ></Ellipse>
         </G>
         <Path
           d="M97.83,269.78s-6.83,49-9.83,58-7,38-8.67,47a133.18,133.18,0,0,0-2,15l4.34,1.34s20.33-51,25.66-61.67A101.14,101.14,0,0,0,115,307.12s4,27,4,35.33,2.67,34.33,3.33,38.67,2,9.66,2,9.66l4-.66s6.34-36.67,7.34-55.34-2-45-4-53.66a86.52,86.52,0,0,0-3.84-13S107.33,272.78,97.83,269.78Z"
@@ -665,7 +673,7 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
         ></Path>
-        <line
+        <Line
           x1="116.46"
           y1="307.19"
           x2="124.92"
@@ -675,8 +683,8 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="0.5px"
-        ></line>
-        <line
+        ></Line>
+        <Line
           x1="117.97"
           y1="304.17"
           x2="124.32"
@@ -686,62 +694,62 @@ const CelebrationImage = ({ color = "#92E3A9", size = 300 }: SvgProps) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="0.5px"
-        ></line>
+        ></Line>
         <Path
           d="M101,213.12s-3.33.83-20.83,10.16-32.12,20.81-27.12,26.81,38.76,20.38,38.76,20.38l2.52-3.69s-26.28-17.19-26.28-20.52,22.12-10.14,22.12-10.14l7.66,33.66a30.24,30.24,0,0,0,15.17,2.5,35.19,35.19,0,0,0,14.83-4.16l2-34.67s20.84-3.33,26.67-15.17-2.17-40-2.17-40l-3.5.34s.34,27.33-2.5,32.5-25.5,1.5-34,.5S101,213.12,101,213.12Z"
           fill={color}
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeLinejoin="round"
         ></Path>
-        <polyline
+        <Polyline
           points="102.56 233.78 90.17 236.12 100.15 238.92"
           fill="none"
           stroke="#263238"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="0.5"
-        ></polyline>
-        <polyline
+        ></Polyline>
+        <Polyline
           points="130.06 225.32 129.83 233.45 134.89 221.7"
           fill="none"
           stroke="#263238"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="0.5"
-        ></polyline>
+        ></Polyline>
         <Path
           d="M101.83,206.28s-2.83.5-3.5,3a16.08,16.08,0,0,0,.17,8c.67,1.84,3.17,6.5,3.17,6.5s6.29-6.22,7.24-6c4.65,1.06,7.25,1.51,9.67,2.12,0,0-1.25-9.61-3.91-12.27S103.5,206,101.83,206.28Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M99.5,200.62s1.83,6.5,1.83,9S109,221.78,109,221.78l3.17-13-1.34-8.5S104,204.28,99.5,200.62Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M113.17,181.12s.5,8.83,2,12.5.33,9.5-3.34,11.66-9.16-.16-12.33-2.33-4.67-6.67-6.33-11.67-1.84-12.16,3.5-14.5S113.17,181.12,113.17,181.12Z"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M95.17,195.62s3.5-1.17,3.5-2.84-1.5-2.66-1.67-5.16,3.33-3.84,3.33-5.34a8.74,8.74,0,0,0-.33-2.5s7.83,2.84,12.5,2.84,5.67-3.84,4.33-4.84,2.84.67,1.17-2.83-9.83-6.17-17.83-3.83-9,5.83-9,5.83-6.84,3-6.34,7.83S93,195.45,93.67,196,95.17,195.62,95.17,195.62Z"
           fill="#263238"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
         <Path
           d="M97.5,197.45s-2.17-4.33-4.17-3.5-.66,3.17,1.5,5,3.5,1.17,3.5,1.17"
           fill="#fff"
-          stroke="263238"
+          stroke="#263238"
           strokeLinecap="round"
           strokeMiterlimit="10"
         ></Path>
