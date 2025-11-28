@@ -4,5 +4,7 @@ export interface SvgProps {
 }
 
 import RevenueImage from "./RevenueImage";
+import RevenueImageTwo from "./RevenueImageTwo";
+import CelebrationImage from "./CelebrationImage";
 
-export { RevenueImage };
+export { RevenueImage, RevenueImageTwo, CelebrationImage };
