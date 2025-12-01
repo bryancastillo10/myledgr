@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { styles } from "@/assets/styles/home";
 import { BalanceCard } from "@/components/ui/BalanceCard";
 
-export default function Page() {
+export default function HomePage() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>

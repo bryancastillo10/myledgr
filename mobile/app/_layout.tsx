@@ -1,12 +1,16 @@
-import { Slot } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import ScreenWrapper from "@/components/layout/ScreenWrapper";
+import { Stack } from "expo-router";
 
 export default function Layout() {
   return (
-    <ScreenWrapper>
-      <Slot />
-      <StatusBar style="dark" />
-    </ScreenWrapper>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="welcome" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="(root)" options={{ headerShown: false }} />
+      <Stack.Screen name="(transaction)" options={{ headerShown: false }} />
+    </Stack>
   );
 }
