@@ -1,7 +1,7 @@
 import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { styles } from "@/assets/styles/auth";
+import { styles } from "@/features/auth/styles/auth";
 
 import { RevenueImage } from "@/assets/svg";
 import { COLORS } from "@/constants/colors";

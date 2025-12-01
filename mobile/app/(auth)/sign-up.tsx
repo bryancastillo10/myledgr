@@ -1,5 +1,5 @@
 import { ScrollView, View, Text } from "react-native";
-import { styles } from "@/assets/styles/auth";
+import { styles } from "@/features/auth/styles/auth";
 
 export default function SignUpPage() {
   return (
