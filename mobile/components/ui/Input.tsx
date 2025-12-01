@@ -3,7 +3,7 @@ import { COLORS } from "@/constants/colors";
 
 interface InputProps {
   value: string;
-  onChange: () => void;
+  onChange: (value: string) => void;
   error?: boolean;
   placeholder?: string;
   secureText?: boolean;
@@ -20,7 +20,7 @@ const Input = ({
     <View style={styles.container}>
       <TextInput
         value={value}
-        onChange={onChange}
+        onChangeText={onChange}
         secureTextEntry={secureText}
         style={[styles.input, error && styles.errorInput]}
         placeholder={placeholder}
