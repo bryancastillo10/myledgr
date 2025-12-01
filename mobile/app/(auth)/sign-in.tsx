@@ -1,4 +1,5 @@
 import { View, ScrollView, Text, TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "@/assets/styles/auth";
 
@@ -37,6 +38,15 @@ export default function SignInPage() {
         <Button textButton="Sign In" onPress={handleSubmit} />
       </View>
 
+      <View style={styles.footerContainer}>
+        <Text style={styles.footerText}>Don&apos;t have an account?</Text>
+        <Link href="/sign-up" asChild>
+          <TouchableOpacity>
+            <Text style={styles.linkText}>Sign Up</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
+
       {error ? (
         <View style={styles.errorBox}>
           <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
@@ -46,10 +56,6 @@ export default function SignInPage() {
           </TouchableOpacity>
         </View>
       ) : null}
-
-      <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>Already have an account?</Text>
-      </View>
     </ScrollView>
   );
 }
