@@ -30,19 +30,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 12,
   },
-  button: {
-    backgroundColor: COLORS.primary,
-    borderRadius: 12,
-    padding: 16,
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: COLORS.white,
-    fontSize: 18,
-    fontWeight: "600",
-  },
   footerContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -98,7 +85,7 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   errorText: {
-    color: COLORS.text,
+    color: COLORS.expense,
     marginLeft: 8,
     flex: 1,
     fontSize: 14,
