@@ -3,7 +3,7 @@ import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "@/features/auth/styles/auth";
 
-import { RevenueImage } from "@/assets/svg";
+import { RevenueImageTwo } from "@/assets/svg";
 import { COLORS } from "@/constants/colors";
 
 import Input from "@/components/ui/Input";
@@ -18,9 +18,12 @@ export default function SignInPage() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>MyLedgr App</Text>
-      <RevenueImage color={COLORS.primary} />
-
-      <Text style={styles.subtitle}>Sign In To Continue</Text>
+      <View style={styles.illustration}>
+        <RevenueImageTwo color={COLORS.primary} size={350} />
+      </View>
+      <View style={{ marginTop: 12 }}>
+        <Text style={styles.subtitle}>Sign In To Continue</Text>
+      </View>
       <View style={styles.formContainer}>
         <Input
           placeholder="Email Address"
