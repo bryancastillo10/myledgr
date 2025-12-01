@@ -10,6 +10,7 @@ export default function Layout() {
       <Stack.Screen name="welcome" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       <Stack.Screen name="(root)" options={{ headerShown: false }} />
+      <Stack.Screen name="(transaction)" options={{ headerShown: false }} />
     </Stack>
   );
 }
