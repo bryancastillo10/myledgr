@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
-    padding: 20,
-    justifyContent: "center",
+    padding: 10,
   },
   illustration: {
     height: 310,
@@ -20,31 +19,16 @@ export const styles = StyleSheet.create({
     marginVertical: 15,
     textAlign: "center",
   },
-  input: {
-    backgroundColor: COLORS.white,
-    borderRadius: 12,
-    padding: 15,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    fontSize: 16,
+  subtitle: {
+    fontSize: 24,
+    fontWeight: "semibold",
     color: COLORS.text,
+    marginVertical: 18,
+    textAlign: "center",
   },
-  errorInput: {
-    borderColor: COLORS.expense,
-  },
-  button: {
-    backgroundColor: COLORS.primary,
-    borderRadius: 12,
-    padding: 16,
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: COLORS.white,
-    fontSize: 18,
-    fontWeight: "600",
+  formContainer: {
+    paddingVertical: 14,
+    paddingHorizontal: 12,
   },
   footerContainer: {
     flexDirection: "row",
@@ -101,7 +85,7 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   errorText: {
-    color: COLORS.text,
+    color: COLORS.expense,
     marginLeft: 8,
     flex: 1,
     fontSize: 14,
