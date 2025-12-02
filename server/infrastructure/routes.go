@@ -38,7 +38,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	userGroup := r.Group("/user", middleware.JWTAuthMiddleware())
 	{
 		userGroup.GET("/", userHandler.GetUser)
-		userGroup.GET("/all", userHandler.GetAllUsers)
+		userGroup.GET("/all", middleware.RequireRoles("ADMIN"), userHandler.GetAllUsers)
 		userGroup.PUT("/", userHandler.UpdateUser)
 		userGroup.DELETE("/", userHandler.DeleteUser)
 	}

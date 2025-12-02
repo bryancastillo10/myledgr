@@ -34,7 +34,13 @@ func (h *Handler) GetUser(c *gin.Context) {
 }
 
 func (h *Handler) GetAllUsers(c *gin.Context) {
+	users, err := h.service.GetAllUsers()
+	if err != nil {
+		c.Error(err)
+		return
+	}
 
+	c.JSON(200, users)
 }
 
 func (h *Handler) UpdateUser(c *gin.Context) {

@@ -34,8 +34,23 @@ func (s *Service) GetUser(id string) (*UserDetail, error){
 		return profile, nil
 }
 
-func (s *Service) GetAllUsers (id string) ([]UserDetail, error) {
-	return nil, nil
+func (s *Service) GetAllUsers () ([]UserDetail, error) {
+	users, err := s.repo.GetAllUsers()
+	if err != nil {
+		return nil, appErr.NewInternal("Failed to query all users", err)
+	}
+
+	var profiles []UserDetail 
+	for _, user := range users {
+		profiles = append(profiles, UserDetail{
+			Username: user.Username,
+			Email: user.Email,
+			Bio: user.Bio,
+			Role: Role(user.Role),
+		})
+	}
+
+	return profiles, nil
 }
 
 func (s *Service) UpdateUser(req UpdateUserRequest) {
