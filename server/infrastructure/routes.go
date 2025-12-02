@@ -3,6 +3,8 @@ package infrastructure
 import (
 	"myledgr-server/internal/auth"
 	"myledgr-server/internal/transaction"
+	"myledgr-server/internal/user"
+	"myledgr-server/middleware"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -14,6 +16,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	})
 
 	authHandler := auth.NewHandler(db)
+	userHandler := user.NewHandler(db)
 	transactionHandler := transaction.NewHandler(db)
 
 	authGroup := r.Group("/auth")
@@ -32,11 +35,11 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		transactionGroup.DELETE("/:id", transactionHandler.DeleteTransaction)
 	}
 
-	userGroup := r.Group("/user")
+	userGroup := r.Group("/user", middleware.JWTAuthMiddleware())
 	{
-		userGroup.GET("/")
-		userGroup.GET("/all")
-		userGroup.PUT("/")
-		userGroup.DELETE("/")
+		userGroup.GET("/", userHandler.GetUser)
+		userGroup.GET("/all", middleware.RequireRoles("ADMIN"), userHandler.GetAllUsers)
+		userGroup.PUT("/", userHandler.UpdateUser)
+		userGroup.DELETE("/", userHandler.DeleteUser)
 	}
 }
