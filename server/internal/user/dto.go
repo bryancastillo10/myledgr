@@ -7,11 +7,10 @@ const (
 )
 
 type UserDetail struct {
-	Username string
-	Email string 
-	Password string
-	Bio *string
-	Role Role
+	Username string `json:"username"`
+	Email string `json:"email"`
+	Bio *string `json:"bio"`
+	Role Role `json:"role"`
 }
 
 type UpdateUserRequest struct {
