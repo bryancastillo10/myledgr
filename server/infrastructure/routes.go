@@ -31,4 +31,12 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		transactionGroup.PUT("/:id", transactionHandler.UpdateTransaction)
 		transactionGroup.DELETE("/:id", transactionHandler.DeleteTransaction)
 	}
+
+	userGroup := r.Group("/user")
+	{
+		userGroup.GET("/")
+		userGroup.GET("/all")
+		userGroup.PUT("/")
+		userGroup.DELETE("/")
+	}
 }
