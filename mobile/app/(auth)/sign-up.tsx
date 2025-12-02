@@ -1,16 +1,19 @@
 import { ScrollView, View, Text, TouchableOpacity } from "react-native";
 import { styles } from "@/features/auth/styles/auth";
+import { Link } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 import { CelebrationImage } from "@/assets/svg";
 import { COLORS } from "@/constants/colors";
 
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { Link } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+
+import useSignUpForm from "@/features/auth/hooks/useSignUpForm";
 
 export default function SignUpPage() {
-  const error = "No information provided";
+  const { signUpData, error, onChangeData, handleCloseError, handleSubmit } =
+    useSignUpForm();
 
   return (
     <ScrollView style={styles.container}>
@@ -20,20 +23,33 @@ export default function SignUpPage() {
       </View>
 
       <View style={styles.formContainer}>
-        <Input placeholder="Username" value="" onChange={() => {}} />
+        <Input
+          placeholder="Username"
+          value={signUpData.username}
+          onChange={onChangeData("username")}
+        />
 
-        <Input placeholder="Email" value="" onChange={() => {}} />
+        <Input
+          placeholder="Email"
+          value={signUpData.email}
+          onChange={onChangeData("email")}
+        />
 
-        <Input placeholder="Password" secureText value="" onChange={() => {}} />
+        <Input
+          placeholder="Password"
+          secureText
+          value={signUpData.password}
+          onChange={onChangeData("password")}
+        />
 
         <Input
           placeholder="Confirm Password"
           secureText
-          value=""
-          onChange={() => {}}
+          value={signUpData.confirmPassword}
+          onChange={onChangeData("confirmPassword")}
         />
 
-        <Button textButton="Sign Up" onPress={() => {}} />
+        <Button textButton="Sign Up" onPress={handleSubmit} />
       </View>
 
       <View style={styles.footerContainer}>
@@ -49,7 +65,7 @@ export default function SignUpPage() {
         <View style={styles.errorBox}>
           <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
           <Text style={styles.errorText}>{error}</Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={handleCloseError}>
             <Ionicons name="close" size={20} color={COLORS.expense} />
           </TouchableOpacity>
         </View>
