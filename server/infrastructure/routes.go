@@ -36,7 +36,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	{
 		userGroup.GET("/")
 		userGroup.GET("/all")
-		userGroup.PUT("/:id")
-		userGroup.DELETE("/:id")
+		userGroup.PUT("/")
+		userGroup.DELETE("/")
 	}
 }

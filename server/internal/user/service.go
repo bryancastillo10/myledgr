@@ -8,12 +8,12 @@ func NewService(repo *Repository) *Service {
 	return &Service{repo: repo}
 }
 
-func (s *Service) GetUser(id string) {
-
+func (s *Service) GetUser(id string) (*UserDetail, error){
+		return nil, nil
 }
 
-func (s *Service) GetAllUsers (users []UserDetail) {
-	
+func (s *Service) GetAllUsers (id string) ([]UserDetail, error) {
+	return nil, nil
 }
 
 func (s *Service) UpdateUser(req UpdateUserRequest) {
