@@ -2,11 +2,12 @@ package user
 
 import (
 	"errors"
+
 	"myledgr-server/models"
 	appErr "myledgr-server/pkg/errors"
+	"myledgr-server/pkg/utils"
 
 	"github.com/google/uuid"
-
 	"gorm.io/gorm"
 )
 
@@ -37,10 +38,37 @@ func (r *Repository) GetAllUsers() ([]models.User, error) {
 	return users, nil
 }
 
-func (r *Repository) UpdateUser() {
+func (r *Repository) UpdateUser(uid uuid.UUID, req UpdateUserRequest) (*models.User, error) {
+	var user models.User
 
+	if err := r.db.First(&user,"id = ?",uid).Error; err != nil {
+		return nil, err
+	}
+
+	if err := utils.Patch(&user, &req); err != nil {
+		return nil, err
+	}
+
+	if err := r.db.Save(&user).Error; err != nil {
+		return nil, err
+	}
+
+	return &user,nil
 }
 
-func (r *Repository) DeleteUser() {
+func (r *Repository) FindUserByID(uid uuid.UUID) (*models.User, error) {
+	var user models.User
 
+	if err := r.db.First(&user, "id = ?", uid).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func (r *Repository) DeleteUser(uid uuid.UUID) error {
+	if err := r.db.Delete(&models.User{}, "id = ?",uid).Error; err != nil {
+		return err
+	}
+
+	return nil
 }

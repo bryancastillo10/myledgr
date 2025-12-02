@@ -14,12 +14,14 @@ type UserDetail struct {
 }
 
 type UpdateUserRequest struct {
-	Username *string
-	Email *string
-	Bio *string
+	Username *string `json:"username,omitempty"`
+	Email *string	`json:"email,omitempty"`
+	Bio *string	`json:"bio,omitempty"`
 }
 
 type UpdateUserResponse struct {
 	ID string `json:"id"`
-	Role string `json:"role"`
+	Username *string `json:"username,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Bio *string `json:"bio,omitempty"`
 }
