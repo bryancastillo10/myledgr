@@ -56,6 +56,15 @@ func (r *Repository) UpdateUser(uid uuid.UUID, req UpdateUserRequest) (*models.U
 	return &user,nil
 }
 
+func (r *Repository) FindUserByID(uid uuid.UUID) (*models.User, error) {
+	var user models.User
+
+	if err := r.db.First(&user, "id = ?", uid).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
 func (r *Repository) DeleteUser(uid uuid.UUID) error {
 	if err := r.db.Delete(&models.User{}, "id = ?",uid).Error; err != nil {
 		return err
