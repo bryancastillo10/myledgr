@@ -1,5 +1,7 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, Pressable, StyleSheet } from "react-native";
+import { useState } from "react";
 import { COLORS } from "@/constants/colors";
+import { Ionicons } from "@expo/vector-icons";
 
 interface InputProps {
   value: string;
@@ -16,16 +18,32 @@ const Input = ({
   error = false,
   secureText = false,
 }: InputProps) => {
+  const [isRevealed, setIsRevealed] = useState<boolean>(secureText);
+
+  const handleReveal = () => {
+    setIsRevealed(!isRevealed);
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
         value={value}
         onChangeText={onChange}
-        secureTextEntry={secureText}
+        secureTextEntry={isRevealed}
         style={[styles.input, error && styles.errorInput]}
         placeholder={placeholder}
         placeholderTextColor={COLORS.primary}
       />
+
+      {secureText && (
+        <Pressable style={styles.iconContainer} onPress={handleReveal}>
+          <Ionicons
+            name={isRevealed ? "eye-off" : "eye-outline"}
+            size={22}
+            color={COLORS.textLight}
+          />
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -48,5 +66,12 @@ const styles = StyleSheet.create({
   },
   errorInput: {
     borderColor: COLORS.expense,
+  },
+  iconContainer: {
+    position: "absolute",
+    right: 16,
+    bottom: 8,
+    height: "100%",
+    justifyContent: "center",
   },
 });
