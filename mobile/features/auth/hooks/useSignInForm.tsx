@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
+
+import { authApi } from "@/features/auth/api/request";
+import useGetUser from "@/features/user/hooks/useGetUser";
 
 const initialSignIn = {
   email: "",
@@ -7,7 +11,11 @@ const initialSignIn = {
 
 const useSignInForm = () => {
   const [signInData, setSignInData] = useState(initialSignIn);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+
+  const router = useRouter();
+  const { loading: getUserLoading } = useGetUser();
 
   const onChangeData = (key: keyof typeof initialSignIn) => (value: string) => {
     setSignInData((prev) => ({
@@ -20,18 +28,32 @@ const useSignInForm = () => {
     setError("");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (signInData.email == "" || signInData.password == "") {
       setError("Email and password are required");
       return;
     }
 
-    // API call for sign in endpoint
+    try {
+      setLoading(true || getUserLoading);
+      setError("");
+
+      const res = await authApi.signIn(signInData);
+
+      if (res && res.user) {
+        router.push("/(root)");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Sign in failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {
     signInData,
     error,
+    loading,
     onChangeData,
     handleCloseErrror,
     handleSubmit,

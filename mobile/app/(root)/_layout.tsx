@@ -1,5 +1,10 @@
 import { Stack } from "expo-router";
+import { ProtectedRoute } from "@/components/layout/ProtectedRoute";
 
 export default function RootLayout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <ProtectedRoute>
+      <Stack screenOptions={{ headerShown: false }} />
+    </ProtectedRoute>
+  );
 }
