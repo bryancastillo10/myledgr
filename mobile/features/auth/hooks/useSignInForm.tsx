@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRouter } from "expo-router";
 
 import { authApi } from "@/features/auth/api/request";
+import useGetUser from "@/features/user/hooks/useGetUser";
+
 import { useAuthStore } from "@/lib/zustand/user";
 
 const initialSignIn = {
@@ -15,8 +17,9 @@ const useSignInForm = () => {
   const [error, setError] = useState<string>("");
 
   const router = useRouter();
-  const { setUser } = useAuthStore();
+  const { loading: getUserLoading } = useGetUser();
 
+  // Test:
   const user = useAuthStore((state) => state.user);
 
   const onChangeData = (key: keyof typeof initialSignIn) => (value: string) => {
@@ -37,14 +40,12 @@ const useSignInForm = () => {
     }
 
     try {
-      setLoading(true);
+      setLoading(true || getUserLoading);
       setError("");
 
       const res = await authApi.signIn(signInData);
 
       if (res && res.user) {
-        // Needs Fix
-        setUser(res.user);
         console.log("User Data", user);
 
         router.push("/(root)");
