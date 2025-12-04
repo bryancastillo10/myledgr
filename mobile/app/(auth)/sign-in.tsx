@@ -10,10 +10,21 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
 import useSignInForm from "@/features/auth/hooks/useSignInForm";
+import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
 
 export default function SignInPage() {
-  const { signInData, error, onChangeData, handleCloseErrror, handleSubmit } =
-    useSignInForm();
+  const {
+    signInData,
+    error,
+    onChangeData,
+    loading,
+    handleCloseErrror,
+    handleSubmit,
+  } = useSignInForm();
+
+  if (loading) {
+    return <AnimatedLoadingScreen text="Logging In" />;
+  }
 
   return (
     <ScrollView style={styles.container}>
