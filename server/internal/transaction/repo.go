@@ -37,13 +37,13 @@ func (r *Repository) GetTransactionSummaryByUser(userId uuid.UUID) (float64, flo
 	var creditSum float64
 
 	if err := r.db.Model(&models.Transaction{}).
-		Where("user_id = ? AND category = ?", userId, Debit).
+		Where("user_id = ? AND category = ?", userId).
 		Select("COALESCE(SUM(amount),0)").Scan(&debitSum).Error; err != nil {
 		return 0,0, err
 	}
 
 	if err := r.db.Model(&models.Transaction{}).
-		Where("user_id = ? AND category = ?", userId, Debit).
+		Where("user_id = ? AND category = ?", userId).
 		Select("COALESCE(SUM(amount),0)").Scan(&creditSum).Error; err != nil {
 		return 0,0,err
 	}

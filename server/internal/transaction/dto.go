@@ -1,16 +1,18 @@
 package transaction
 
-type TransactionCategory string
-
-const (
-	Debit  TransactionCategory = "DEBIT"
-	Credit TransactionCategory = "CREDIT"
+import (
+	"myledgr-server/models"
+	"time"
 )
+
 
 type TransactionItem struct {
 	Title string 	`json:"title"`
 	Amount float64	`json:"amount"`
-	Category TransactionCategory `json:"category"`
+	Category models.TransactionCategory`json:"category"`
+
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 
