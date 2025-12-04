@@ -10,10 +10,21 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
 import useSignUpForm from "@/features/auth/hooks/useSignUpForm";
+import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
 
 export default function SignUpPage() {
-  const { signUpData, error, onChangeData, handleCloseError, handleSubmit } =
-    useSignUpForm();
+  const {
+    signUpData,
+    error,
+    loading,
+    onChangeData,
+    handleCloseError,
+    handleSubmit,
+  } = useSignUpForm();
+
+  if (loading) {
+    return <AnimatedLoadingScreen text="Registering an Account" />;
+  }
 
   return (
     <ScrollView style={styles.container}>
