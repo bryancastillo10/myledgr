@@ -97,5 +97,21 @@ func (h *Handler) UpdateTransaction(c *gin.Context) {
 }
 
 func (h *Handler) DeleteTransaction(c *gin.Context) {
+	id := c.Param("id")
 
+	userId, err := http_helper.ExtractUserIDFromContext(c)
+	if err != nil {
+		c.Error(err)
+		return
+	}
+
+	err = h.service.DeleteTransaction(id, userId)
+	if err != nil {
+		c.Error(err)
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message":"Transaction deleted",
+	})
 }

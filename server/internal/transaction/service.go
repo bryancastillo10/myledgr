@@ -136,6 +136,30 @@ func (s *Service) UpdateTransaction(id string, req TransactionItem) (*MutateTran
 	return transResp, nil
 }
 
-func (s *Service) DeleteTransaction() {
+func (s *Service) DeleteTransaction(id string, userId string) error {
+	trId, err := utils.ParseId(id)
+	if err != nil {
+		return appErr.NewBadRequest("Invalid Transaction ID", err)
+	}
 
+	uId, err := utils.ParseId(userId)
+	if err != nil {
+		return appErr.NewBadRequest("Invalid User ID", err)
+	}
+
+	transaction, err := s.repo.FindTransactionById(trId)
+	if err != nil {
+		return appErr.NewInternal("Failed to find the transaction", err)
+	}
+
+	if transaction.UserID != uId {
+		return appErr.NewBadRequest("User is not authorized to delete the transaction", nil)
+	}
+
+	if err := s.repo.DeleteTransaction(trId);
+	err != nil {
+		return appErr.NewInternal("Failed to delete the transaction",err)
+	}
+
+	return nil
 }
