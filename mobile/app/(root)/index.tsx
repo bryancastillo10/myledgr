@@ -4,22 +4,12 @@ import { styles } from "@/assets/styles/home";
 import { BalanceCard } from "@/features/transaction/components/BalanceCard";
 
 import Button from "@/components/ui/Button";
-import { authApi } from "@/features/auth/api/request";
-import { useAuthStore } from "@/lib/zustand/user";
-import { useRouter } from "expo-router";
 import HomePageHeader from "@/features/user/components/HomePageHeader";
 
+import useSignOut from "@/features/auth/hooks/useSignOut";
+
 export default function HomePage() {
-  const { clearUser } = useAuthStore();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await authApi.signOut();
-
-    clearUser();
-
-    router.push("/welcome");
-  };
+  const { handleSignOut } = useSignOut();
 
   return (
     <View style={styles.container}>
