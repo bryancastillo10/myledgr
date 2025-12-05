@@ -57,6 +57,17 @@ func (r *Repository) FindTransactionById (trId uuid.UUID) (*models.Transaction, 
 	return &transactionItem, err
 }
 
+func (r *Repository) FindUsernameById (userId uuid.UUID) (string, error) {
+	var user models.User
+
+	err := r.db.Select("username").First(&user,"id = ?", userId).Error
+	if err != nil {
+		return "", err
+	}
+	
+	return user.Username, nil
+}
+
 func (r *Repository) UpdateTransaction(trId uuid.UUID, req TransactionItem) (*models.Transaction, error) {
 	var transaction models.Transaction
 

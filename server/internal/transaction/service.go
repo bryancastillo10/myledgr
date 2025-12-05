@@ -15,7 +15,7 @@ func NewService(repo *Repository) *Service {
 	return &Service{repo: repo}
 }
 
-func (s *Service) CreateTransaction(req TransactionItem, userId string) (*models.Transaction, error) {
+func (s *Service) CreateTransaction(req TransactionItem, userId string) (*MutateTransactionResponse, error) {
 	uid, err := utils.ParseId(userId)
 	if err != nil {
 		return nil, appErr.NewBadRequest("Invalid User ID",err)
@@ -25,7 +25,7 @@ func (s *Service) CreateTransaction(req TransactionItem, userId string) (*models
 		return nil, appErr.NewBadRequest("Missing title field",nil)
 	}
 
-if req.Category != models.Credit && req.Category != models.Debit {
+	if req.Category != models.Credit && req.Category != models.Debit {
 		return nil, appErr.NewBadRequest("Category must be DEBIT or CREDIT", nil)
 	}
 
@@ -47,7 +47,19 @@ if req.Category != models.Credit && req.Category != models.Debit {
 		return nil, appErr.NewInternal("Failed to create transaction", nil)
 	}
 
-	return createdTr, nil
+	transactionOwner, err := s.repo.FindUsernameById(createdTr.UserID)
+	if err != nil {
+		return nil, appErr.NewInternal("Failed to find the transaction owner",nil)
+	}
+
+	
+
+	transResp := &MutateTransactionResponse{
+		ID: createdTr.ID.String(),
+		TransactionOwner: transactionOwner,	
+	}
+
+	return transResp, nil
 }
 
 func (s *Service) GetTransactionsByUser(userId string) ([]TransactionItem,error) {
@@ -89,8 +101,13 @@ func (s *Service) GetTransactionSummaryByUser(userId string) (float64, float64, 
 	return debitSum, creditSum, nil
 }
 
-func (s *Service) UpdateTransaction() {
+func (s *Service) UpdateTransaction(id string, req TransactionItem) (*MutateTransactionResponse, error) {
+		// trId, err := utils.ParseId(id)
+		// if err != nil {
+		// 	return nil, appErr.NewBadRequest("Invalid ID", err)
+		// }
 
+		return nil, nil
 }
 
 func (s *Service) DeleteTransaction() {
