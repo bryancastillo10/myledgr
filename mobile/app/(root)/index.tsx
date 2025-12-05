@@ -3,19 +3,18 @@ import { View, Text } from "react-native";
 import { styles } from "@/assets/styles/home";
 import { BalanceCard } from "@/features/transaction/components/BalanceCard";
 
-import Button from "@/components/ui/Button";
 import HomePageHeader from "@/features/user/components/HomePageHeader";
 
-import useSignOut from "@/features/auth/hooks/useSignOut";
+import useGetUser from "@/features/user/hooks/useGetUser";
 
 export default function HomePage() {
-  const { handleSignOut } = useSignOut();
+  const { user } = useGetUser();
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         {/* Header */}
-        <HomePageHeader />
+        <HomePageHeader user={user} />
 
         {/* Balance Card UI */}
         <BalanceCard />
@@ -24,8 +23,6 @@ export default function HomePage() {
           <Text style={styles.sectionTitle}>Recent Transactions</Text>
         </View>
       </View>
-
-      <Button onPress={handleSignOut} textButton="Sign Out" />
       {/* List of Transactions */}
       {/* Flatlist */}
     </View>

@@ -4,6 +4,8 @@ import { useAuthStore } from "@/lib/zustand/user";
 import { userApi } from "@/features/user/api/request";
 
 const useGetUser = () => {
+  const user = useAuthStore((state) => state.user);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
 
@@ -31,6 +33,7 @@ const useGetUser = () => {
   }, [setUser]);
 
   return {
+    user,
     loading,
     checked,
   };
