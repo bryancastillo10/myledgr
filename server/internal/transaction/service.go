@@ -60,7 +60,7 @@ func (s *Service) CreateTransaction(req TransactionItem, userId string) (*Mutate
 	return transResp, nil
 }
 
-func (s *Service) GetTransactionsByUser(userId string) ([]TransactionItem, error) {
+func (s *Service) GetTransactionsByUser(userId string) ([]TransactionItemWithId, error) {
 	uid, err := utils.ParseId(userId)
 	if err != nil {
 		return nil, appErr.NewBadRequest("Invalid User ID", err)
@@ -71,15 +71,9 @@ func (s *Service) GetTransactionsByUser(userId string) ([]TransactionItem, error
 		return nil, appErr.NewInternal("Failed to query transactions", err)
 	}
 
-	var items []TransactionItem
+	var items []TransactionItemWithId
 	for _, tr := range transactions {
-		items = append(items, TransactionItem{
-			Title:     tr.Title,
-			Amount:    tr.Amount,
-			Category:  tr.Category,
-			CreatedAt: tr.CreatedAt,
-			UpdatedAt: tr.UpdatedAt,
-		})
+		items = append(items, MapTransactionToResponse(tr))
 	}
 
 	return items, nil
@@ -106,12 +100,40 @@ func (s *Service) GetTransactionSummaryByUser(userId string) (*TransactionSummar
 }
 
 func (s *Service) UpdateTransaction(id string, req TransactionItem) (*MutateTransactionResponse, error) {
-	// trId, err := utils.ParseId(id)
-	// if err != nil {
-	// 	return nil, appErr.NewBadRequest("Invalid ID", err)
-	// }
+	trId, err := utils.ParseId(id)
+	if err != nil {
+		return nil, appErr.NewBadRequest("Invalid ID", err)
+	}
 
-	return nil, nil
+	if req.Title == "" {
+		return nil, appErr.NewBadRequest("Missing title field", nil)
+	}
+
+	if req.Category != models.Credit && req.Category != models.Debit {
+		return nil, appErr.NewBadRequest("Category must be DEBIT or CREDIT", nil)
+	}
+
+	if req.Amount <= 0 {
+		return nil, appErr.NewBadRequest("Positive amount value is required", nil)
+	}
+
+	updatedTr, err := s.repo.UpdateTransaction(trId, req)
+	if err != nil {
+		return nil, appErr.NewInternal("Failed to update the transaction",err)
+	}
+
+	transactionOwner, err := s.repo.FindUsernameById(updatedTr.UserID)
+	if err != nil {
+		return nil, appErr.NewInternal("Failed to find the transaction owner", nil)
+	}
+
+
+	transResp := &MutateTransactionResponse{
+		ID: updatedTr.ID.String(),
+		TransactionOwner: transactionOwner,
+	}
+
+	return transResp, nil
 }
 
 func (s *Service) DeleteTransaction() {

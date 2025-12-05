@@ -2,7 +2,7 @@ package transaction
 
 import (
 	"myledgr-server/models"
-	"myledgr-server/pkg/utils"
+	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -73,14 +73,15 @@ func (r *Repository) UpdateTransaction(trId uuid.UUID, req TransactionItem) (*mo
 
 	if err := r.db.First(&transaction, "id = ?", trId).Error; err != nil {
 		return nil, err
-	}
+	}				
 
-	if err := utils.Patch(&transaction, &req); err != nil {
-		return nil, err
-	}
+	transaction.Title = req.Title
+	transaction.Amount = req.Amount
+	transaction.Category = req.Category
+	transaction.UpdatedAt = time.Now()
 
 	if err := r.db.Save(&transaction).Error; err != nil {
-		return nil, err
+		return nil,err
 	}
 
 	return &transaction, nil

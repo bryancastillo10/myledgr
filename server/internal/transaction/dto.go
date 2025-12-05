@@ -14,6 +14,11 @@ type TransactionItem struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 }
 
+type TransactionItemWithId struct {
+	ID string `json:"id"`
+	TransactionItem
+}
+
 type TransactionSummary struct {
 	DebitSum  float64 `json:"debit"`
 	CreditSum float64 `json:"credit"`
@@ -23,4 +28,17 @@ type TransactionSummary struct {
 type MutateTransactionResponse struct {
 	ID               string `json:"id"`
 	TransactionOwner string `json:"transactionOwner"`
+}
+
+func MapTransactionToResponse(tr models.Transaction) TransactionItemWithId {
+	return TransactionItemWithId{
+		ID: tr.ID.String(),
+		TransactionItem: TransactionItem{
+			Title:     tr.Title,
+			Amount:    tr.Amount,
+			Category:  tr.Category,
+			CreatedAt: tr.CreatedAt,
+			UpdatedAt: tr.UpdatedAt,
+		},
+	}
 }
