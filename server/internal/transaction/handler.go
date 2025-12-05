@@ -43,11 +43,35 @@ func (h *Handler) CreateTransaction(c *gin.Context) {
 }
 
 func (h *Handler) GetTransactionsByUser(c *gin.Context) {
+	userId, err := http_helper.ExtractUserIDFromContext(c)
+	if err != nil {
+		c.Error(err)
+		return
+	}
 
+	transactions, err := h.service.GetTransactionsByUser(userId)
+	if err != nil {
+		c.Error(err)
+		return
+	}
+
+	c.JSON(200, transactions)
 }
 
 func (h *Handler) GetTransactionSummaryByUser(c *gin.Context) {
+	userId, err := http_helper.ExtractUserIDFromContext(c)
+	if err != nil {
+		c.Error(err)
+		return
+	}
 
+	summary, err := h.service.GetTransactionSummaryByUser(userId)
+	if err != nil {
+		c.Error(err)
+		return
+	}
+
+	c.JSON(200, summary)
 }
 
 func (h *Handler) UpdateTransaction(c *gin.Context) {
