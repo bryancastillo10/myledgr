@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { styles } from "@/assets/styles/home";
 import { BalanceCard } from "@/features/transaction/components/BalanceCard";
-
 import HomePageHeader from "@/features/user/components/HomePageHeader";
+import TransactionList from "@/features/transaction/components/TransactionList";
 
 import useGetUser from "@/features/user/hooks/useGetUser";
 
@@ -19,12 +19,9 @@ export default function HomePage() {
         {/* Balance Card UI */}
         <BalanceCard />
 
-        <View style={styles.transactionsHeaderContainer}>
-          <Text style={styles.sectionTitle}>Recent Transactions</Text>
-        </View>
+        {/* Transaction Lists */}
+        <TransactionList />
       </View>
-      {/* List of Transactions */}
-      {/* Flatlist */}
     </View>
   );
 }
