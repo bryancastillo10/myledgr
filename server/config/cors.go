@@ -8,7 +8,7 @@ import (
 
 func CORS() cors.Config {
 	return cors.Config{
-		AllowOrigins:     []string{"http://192.168.1.100","*"},
+		AllowOrigins:     []string{"http://192.168.1.100", "*"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},

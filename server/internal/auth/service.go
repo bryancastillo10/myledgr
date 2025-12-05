@@ -32,35 +32,34 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 
 	// Password and ConfirmPassword Match
 	if req.Password != req.ConfirmPassword {
-		return nil, "", appErr.NewBadRequest("Password does not match",nil)
+		return nil, "", appErr.NewBadRequest("Password does not match", nil)
 	}
 
 	// Hash Password
-	hashedPwd, err := utils.HashPassword(req.Password) 
+	hashedPwd, err := utils.HashPassword(req.Password)
 	if err != nil {
-		return nil,"", appErr.NewInternal("Failed to hash password", err)
+		return nil, "", appErr.NewInternal("Failed to hash password", err)
 	}
-	
 
 	// Generate UserID and Prepare User struct
 	uid := utils.GenerateUUID()
 
 	newUser := &models.User{
-		ID: uid,
+		ID:       uid,
 		Username: req.Username,
-		Email:req.Email,
+		Email:    req.Email,
 		Password: hashedPwd,
-		Role:"PUBLIC",
+		Role:     "PUBLIC",
 	}
 
 	// Create User at Repo Layer
 	createdUser, err := s.repo.CreateUser(newUser)
 	if err != nil {
-		return nil, "", appErr.NewInternal("Failed to create a new user at the database",err)
+		return nil, "", appErr.NewInternal("Failed to create a new user at the database", err)
 	}
 
 	signUpRes := JWTAuthResponse{
-		ID: createdUser.ID.String(),
+		ID:   createdUser.ID.String(),
 		Role: string(createdUser.Role),
 	}
 
@@ -69,7 +68,7 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 		return nil, "", appErr.NewInternal("Failed to generate token", err)
 	}
 
-	return &signUpRes,token, nil
+	return &signUpRes, token, nil
 }
 
 func (s *Service) SignIn(req SignInRequest) (*JWTAuthResponse, string, error) {

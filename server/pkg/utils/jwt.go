@@ -13,7 +13,7 @@ import (
 
 type UserClaims struct {
 	UserID string `json:"userId"`
-	Email string `json:"email"`
+	Email  string `json:"email"`
 	jwt.StandardClaims
 }
 
@@ -34,7 +34,6 @@ func GenerateJWT(user *models.User) (string, error) {
 
 	return tokenStr, nil
 }
-
 
 func ParseJWT(tokenStr string) (*UserClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenStr, &UserClaims{},
