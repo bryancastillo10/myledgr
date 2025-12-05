@@ -21,11 +21,11 @@ func NewRepository(db *gorm.DB) *Repository {
 
 func (r *Repository) GetUser(uid uuid.UUID) (*models.User, error) {
 	var user models.User
-	if err := r.db.First(&user, "id = ?",uid).Error; err != nil {
+	if err := r.db.First(&user, "id = ?", uid).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, appErr.NewNotFound("User not found", err)
 		}
-		return nil, appErr.NewInternal("Failed to get the user details",err)
+		return nil, appErr.NewInternal("Failed to get the user details", err)
 	}
 	return &user, nil
 }
@@ -41,7 +41,7 @@ func (r *Repository) GetAllUsers() ([]models.User, error) {
 func (r *Repository) UpdateUser(uid uuid.UUID, req UpdateUserRequest) (*models.User, error) {
 	var user models.User
 
-	if err := r.db.First(&user,"id = ?",uid).Error; err != nil {
+	if err := r.db.First(&user, "id = ?", uid).Error; err != nil {
 		return nil, err
 	}
 
@@ -53,7 +53,7 @@ func (r *Repository) UpdateUser(uid uuid.UUID, req UpdateUserRequest) (*models.U
 		return nil, err
 	}
 
-	return &user,nil
+	return &user, nil
 }
 
 func (r *Repository) FindUserByID(uid uuid.UUID) (*models.User, error) {
@@ -66,7 +66,7 @@ func (r *Repository) FindUserByID(uid uuid.UUID) (*models.User, error) {
 }
 
 func (r *Repository) DeleteUser(uid uuid.UUID) error {
-	if err := r.db.Delete(&models.User{}, "id = ?",uid).Error; err != nil {
+	if err := r.db.Delete(&models.User{}, "id = ?", uid).Error; err != nil {
 		return err
 	}
 

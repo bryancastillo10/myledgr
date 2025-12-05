@@ -11,7 +11,7 @@ import (
 )
 
 func RequireRoles(roles ...models.Role) gin.HandlerFunc {
-		return func(c *gin.Context) {
+	return func(c *gin.Context) {
 		claims, exists := c.Get("claims")
 		if !exists {
 			appError := appErr.NewUnauthorized("Missing token claims", nil)

@@ -20,40 +20,40 @@ func isValidEmail(email string) bool {
 	return re.MatchString(email)
 }
 
-func (s *Service) GetUser(id string) (*UserDetail, error){
-		uid, err := utils.ParseId(id)
-		if err != nil {
-			return nil, appErr.NewBadRequest("Invalid ID", err)
-		}
+func (s *Service) GetUser(id string) (*UserDetail, error) {
+	uid, err := utils.ParseId(id)
+	if err != nil {
+		return nil, appErr.NewBadRequest("Invalid ID", err)
+	}
 
-		user, err := s.repo.GetUser(uid)
-		if err != nil {
-			return nil, appErr.NewInternal("Failed to get the user details",err)
-		}
+	user, err := s.repo.GetUser(uid)
+	if err != nil {
+		return nil, appErr.NewInternal("Failed to get the user details", err)
+	}
 
-		var profile = &UserDetail{
-			Username: user.Username,
-			Email: user.Email,
-			Bio: user.Bio,
-			Role: Role(user.Role),
-		}
+	var profile = &UserDetail{
+		Username: user.Username,
+		Email:    user.Email,
+		Bio:      user.Bio,
+		Role:     Role(user.Role),
+	}
 
-		return profile, nil
+	return profile, nil
 }
 
-func (s *Service) GetAllUsers () ([]UserDetail, error) {
+func (s *Service) GetAllUsers() ([]UserDetail, error) {
 	users, err := s.repo.GetAllUsers()
 	if err != nil {
 		return nil, appErr.NewInternal("Failed to query all users", err)
 	}
 
-	var profiles []UserDetail 
+	var profiles []UserDetail
 	for _, user := range users {
 		profiles = append(profiles, UserDetail{
 			Username: user.Username,
-			Email: user.Email,
-			Bio: user.Bio,
-			Role: Role(user.Role),
+			Email:    user.Email,
+			Bio:      user.Bio,
+			Role:     Role(user.Role),
 		})
 	}
 
@@ -63,19 +63,19 @@ func (s *Service) GetAllUsers () ([]UserDetail, error) {
 func (s *Service) UpdateUser(req UpdateUserRequest, id string) (*UpdateUserResponse, error) {
 	uid, err := utils.ParseId(id)
 	if err != nil {
-		return nil, appErr.NewBadRequest("Invalid ID",err)
+		return nil, appErr.NewBadRequest("Invalid ID", err)
 	}
 
 	if req.Email != nil && !isValidEmail(*req.Email) {
 		return nil, appErr.NewBadRequest("Invalid email format", nil)
 	}
 
-	updatedUser, err := s.repo.UpdateUser(uid,req)
+	updatedUser, err := s.repo.UpdateUser(uid, req)
 	if err != nil {
-		return nil, appErr.NewInternal("Failed to update the user",err)
+		return nil, appErr.NewInternal("Failed to update the user", err)
 	}
 
-	var newUser = &UpdateUserResponse {
+	var newUser = &UpdateUserResponse{
 		ID: updatedUser.ID.String(),
 	}
 
@@ -97,7 +97,7 @@ func (s *Service) DeleteUser(id string, email string) error {
 		return appErr.NewBadRequest("Email does not match", nil)
 	}
 
-		if err := s.repo.DeleteUser(uid); err != nil {
+	if err := s.repo.DeleteUser(uid); err != nil {
 		return appErr.NewInternal("Failed to delete the user", err)
 	}
 

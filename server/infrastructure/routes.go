@@ -26,11 +26,11 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		authGroup.POST("/signout", authHandler.SignOut)
 	}
 
-	transactionGroup := r.Group("/transaction")
+	transactionGroup := r.Group("/transaction", middleware.JWTAuthMiddleware())
 	{
 		transactionGroup.POST("/", transactionHandler.CreateTransaction)
 		transactionGroup.GET("/", transactionHandler.GetTransactionsByUser)
-		transactionGroup.GET("/summary", transactionHandler.UpdateTransaction)
+		transactionGroup.GET("/summary", transactionHandler.GetTransactionSummaryByUser)
 		transactionGroup.PUT("/:id", transactionHandler.UpdateTransaction)
 		transactionGroup.DELETE("/:id", transactionHandler.DeleteTransaction)
 	}
