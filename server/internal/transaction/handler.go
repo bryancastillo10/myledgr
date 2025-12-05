@@ -76,22 +76,22 @@ func (h *Handler) GetTransactionSummaryByUser(c *gin.Context) {
 
 func (h *Handler) UpdateTransaction(c *gin.Context) {
 	id := c.Param("id")
-	
+
 	req, err := http_helper.BindJSON[TransactionItem](c)
 	if err != nil {
 		c.Error(err)
 		return
 	}
 
-	updatedTransaction, err := h.service.UpdateTransaction(id,*req)
+	updatedTransaction, err := h.service.UpdateTransaction(id, *req)
 	if err != nil {
-		c.Error(err)	
+		c.Error(err)
 		return
 	}
 
 	c.JSON(200, gin.H{
-			"message":"A transaction has been updated successfully",
-			"transaction":updatedTransaction,
+		"message":     "A transaction has been updated successfully",
+		"transaction": updatedTransaction,
 	})
 
 }
@@ -112,6 +112,6 @@ func (h *Handler) DeleteTransaction(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{
-		"message":"Transaction deleted",
+		"message": "Transaction deleted",
 	})
 }

@@ -73,7 +73,7 @@ func (r *Repository) UpdateTransaction(trId uuid.UUID, req TransactionItem) (*mo
 
 	if err := r.db.First(&transaction, "id = ?", trId).Error; err != nil {
 		return nil, err
-	}				
+	}
 
 	transaction.Title = req.Title
 	transaction.Amount = req.Amount
@@ -81,7 +81,7 @@ func (r *Repository) UpdateTransaction(trId uuid.UUID, req TransactionItem) (*mo
 	transaction.UpdatedAt = time.Now()
 
 	if err := r.db.Save(&transaction).Error; err != nil {
-		return nil,err
+		return nil, err
 	}
 
 	return &transaction, nil

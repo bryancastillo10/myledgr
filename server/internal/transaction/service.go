@@ -119,7 +119,7 @@ func (s *Service) UpdateTransaction(id string, req TransactionItem) (*MutateTran
 
 	updatedTr, err := s.repo.UpdateTransaction(trId, req)
 	if err != nil {
-		return nil, appErr.NewInternal("Failed to update the transaction",err)
+		return nil, appErr.NewInternal("Failed to update the transaction", err)
 	}
 
 	transactionOwner, err := s.repo.FindUsernameById(updatedTr.UserID)
@@ -127,9 +127,8 @@ func (s *Service) UpdateTransaction(id string, req TransactionItem) (*MutateTran
 		return nil, appErr.NewInternal("Failed to find the transaction owner", nil)
 	}
 
-
 	transResp := &MutateTransactionResponse{
-		ID: updatedTr.ID.String(),
+		ID:               updatedTr.ID.String(),
 		TransactionOwner: transactionOwner,
 	}
 
@@ -156,9 +155,8 @@ func (s *Service) DeleteTransaction(id string, userId string) error {
 		return appErr.NewBadRequest("User is not authorized to delete the transaction", nil)
 	}
 
-	if err := s.repo.DeleteTransaction(trId);
-	err != nil {
-		return appErr.NewInternal("Failed to delete the transaction",err)
+	if err := s.repo.DeleteTransaction(trId); err != nil {
+		return appErr.NewInternal("Failed to delete the transaction", err)
 	}
 
 	return nil
