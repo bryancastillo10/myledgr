@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "expo-router";
 import { useAuthStore } from "@/lib/zustand/user";
 
 import { userApi } from "@/features/user/api/request";
 
 const useGetUser = () => {
   const user = useAuthStore((state) => state.user);
+
+  const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
@@ -22,7 +25,8 @@ const useGetUser = () => {
           setUser(user);
         }
       } catch (err) {
-        console.error("Failed to get user profile");
+        console.error("Failed to get user profile", err);
+        router.push("/welcome");
       } finally {
         setLoading(false);
         setChecked(true);
@@ -30,7 +34,7 @@ const useGetUser = () => {
     };
 
     fetchUser();
-  }, [setUser]);
+  }, [setUser, router]);
 
   return {
     user,
