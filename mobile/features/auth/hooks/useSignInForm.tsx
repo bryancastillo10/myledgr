@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useRouter } from "expo-router";
 
 import { authApi } from "@/features/auth/api/request";
+import { userApi } from "@/features/user/api/request";
+
+import { useAuthStore } from "@/lib/zustand/user";
 
 const initialSignIn = {
   email: "",
@@ -14,6 +17,7 @@ const useSignInForm = () => {
   const [error, setError] = useState<string>("");
 
   const router = useRouter();
+  const { setUser } = useAuthStore();
 
   const onChangeData = (key: keyof typeof initialSignIn) => (value: string) => {
     setSignInData((prev) => ({
@@ -27,7 +31,7 @@ const useSignInForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (signInData.email == "" || signInData.password == "") {
+    if (signInData.email === "" || signInData.password === "") {
       setError("Email and password are required");
       return;
     }
@@ -37,6 +41,9 @@ const useSignInForm = () => {
       setError("");
 
       const res = await authApi.signIn(signInData);
+      const currUser = await userApi.getUser();
+
+      setUser(currUser);
 
       if (res && res.user) {
         router.push("/(root)");
