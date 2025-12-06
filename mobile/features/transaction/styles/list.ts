@@ -2,6 +2,16 @@ import { StyleSheet } from "react-native";
 import { COLORS } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
+  transactionsList: {
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  transactionLeft: {
+    flex: 1,
+  },
+  transactionsListContent: {
+    paddingBottom: 20,
+  },
   transactionTitle: {
     fontSize: 16,
     fontWeight: "500",
@@ -15,10 +25,18 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     paddingBottom: 5,
   },
-
   transactionCategory: {
     fontSize: 14,
     color: COLORS.textLight,
+  },
+  categoryIconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#F5F5F5",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 12,
   },
   transactionRight: {
     alignItems: "flex-end",

@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 import { styles } from "@/assets/styles/home";
 import { BalanceCard } from "@/features/transaction/components/BalanceCard";
@@ -20,6 +20,9 @@ export default function HomePage() {
         <BalanceCard />
 
         {/* Transaction Lists */}
+        <Text style={styles.transactionsHeaderContainer}>
+          Recent Transactions
+        </Text>
         <TransactionList />
       </View>
     </View>
