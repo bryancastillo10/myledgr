@@ -34,7 +34,7 @@ func (s *Service) CreateTransaction(req TransactionItem, userId string) (*Mutate
 	}
 
 	trId := utils.GenerateUUID()
-	
+
 	var icon string
 	if req.Icon == nil {
 		icon = "cash"
@@ -46,7 +46,7 @@ func (s *Service) CreateTransaction(req TransactionItem, userId string) (*Mutate
 		ID:       trId,
 		UserID:   uid,
 		Title:    req.Title,
-		Icon:  	  &icon,
+		Icon:     &icon,
 		Amount:   req.Amount,
 		Category: req.Category,
 	}

@@ -11,7 +11,7 @@ type Transaction struct {
 	UserID   uuid.UUID           `gorm:"type:uuid; index" json:"userId,omitempty"`
 	Title    string              `gorm:"type:varchar(100)" json:"title"`
 	Amount   float64             `gorm:"type:decimal(10,2);not null" json:"amount"`
-	Icon	 *string		     `gorm:"type:varchar(20)" json:"icon,omitempty"`
+	Icon     *string             `gorm:"type:varchar(20)" json:"icon,omitempty"`
 	Category TransactionCategory `gorm:"type:varchar(20)" json:"category"`
 
 	CreatedAt time.Time `gorm:"autoCreateTime" json:"createdAt"`
