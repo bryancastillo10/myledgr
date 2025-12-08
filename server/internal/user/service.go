@@ -37,6 +37,7 @@ func (s *Service) GetUser(id string) (*UserDetail, error) {
 		Bio:      user.Bio,
 		Address:  user.Address,
 		Theme:    user.Theme,
+		Currency: user.Currency,
 		Role:     Role(user.Role),
 	}
 
@@ -57,6 +58,7 @@ func (s *Service) GetAllUsers() ([]UserDetail, error) {
 			Bio:      user.Bio,
 			Address:  user.Address,
 			Theme:    user.Theme,
+			Currency: user.Currency,
 			Role:     Role(user.Role),
 		})
 	}

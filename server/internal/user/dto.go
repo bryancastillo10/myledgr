@@ -13,6 +13,7 @@ type UserDetail struct {
 	Bio      *string `json:"bio"`
 	Address  *string `json:"address"`
 	Theme    *string `json:"theme"`
+	Currency *string `json:"currency"`
 	Role     Role    `json:"role"`
 }
 
@@ -21,6 +22,7 @@ type UpdateUserRequest struct {
 	Email    *string `json:"email,omitempty"`
 	Bio      *string `json:"bio,omitempty"`
 	Address  *string `json:"address,omitempty"`
+	Currency *string `json:"currency,omitempty"`
 	Theme    *string `json:"theme,omitempty"`
 }
 
