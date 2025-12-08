@@ -43,7 +43,10 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 
 	// Generate UserID and Prepare User struct
 	uid := utils.GenerateUUID()
+
+	// Default values
 	theme := "forest"
+	currency := "USD"
 
 	newUser := &models.User{
 		ID:       uid,
@@ -51,6 +54,7 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 		Email:    req.Email,
 		Password: hashedPwd,
 		Theme:    &theme,
+		Currency: &currency,
 		Role:     "PUBLIC",
 	}
 
