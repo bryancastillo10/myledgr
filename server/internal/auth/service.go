@@ -43,12 +43,14 @@ func (s *Service) SignUp(req SignUpRequest) (*JWTAuthResponse, string, error) {
 
 	// Generate UserID and Prepare User struct
 	uid := utils.GenerateUUID()
+	theme := "forest"
 
 	newUser := &models.User{
 		ID:       uid,
 		Username: req.Username,
 		Email:    req.Email,
 		Password: hashedPwd,
+		Theme:    &theme,
 		Role:     "PUBLIC",
 	}
 
