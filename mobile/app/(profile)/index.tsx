@@ -4,8 +4,14 @@ import { useRouter } from "expo-router";
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import Button from "@/components/ui/Button";
 
+import { useAuthStore } from "@/lib/zustand/user";
+
 export default function ViewProfile() {
+  const user = useAuthStore((state) => state.user);
   const router = useRouter();
+
+  let routeLink;
+  if (!user) return routeLink == "/welcome";
 
   return (
     <ScreenWrapper>
@@ -14,7 +20,7 @@ export default function ViewProfile() {
 
         <Button
           textButton="Go to Home"
-          onPress={() => router.push("/welcome")}
+          onPress={() => router.push(routeLink || "/(root)")}
         />
       </View>
     </ScreenWrapper>

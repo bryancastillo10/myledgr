@@ -1,9 +1,14 @@
 import { View, Text } from "react-native";
 
 import { styles } from "@/assets/styles/home";
-import { BalanceCard } from "@/features/transaction/components/BalanceCard";
+
 import HomePageHeader from "@/features/user/components/HomePageHeader";
-import TransactionList from "@/features/transaction/components/TransactionList";
+
+import {
+  BalanceCard,
+  TransactionHeader,
+  TransactionList,
+} from "@/features/transaction/components";
 
 import useGetUser from "@/features/user/hooks/useGetUser";
 
@@ -20,9 +25,7 @@ export default function HomePage() {
         <BalanceCard />
 
         {/* Transaction Lists */}
-        <Text style={styles.transactionsHeaderContainer}>
-          Recent Transactions
-        </Text>
+        <TransactionHeader />
         <TransactionList />
       </View>
     </View>

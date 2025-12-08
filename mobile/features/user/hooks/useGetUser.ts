@@ -10,7 +10,6 @@ const useGetUser = () => {
   const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [checked, setChecked] = useState<boolean>(false);
 
   const { setUser } = useAuthStore();
 
@@ -29,7 +28,6 @@ const useGetUser = () => {
         router.push("/welcome");
       } finally {
         setLoading(false);
-        setChecked(true);
       }
     };
 
@@ -39,7 +37,6 @@ const useGetUser = () => {
   return {
     user,
     loading,
-    checked,
   };
 };
 

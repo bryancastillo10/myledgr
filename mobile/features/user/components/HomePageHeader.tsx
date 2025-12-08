@@ -9,6 +9,7 @@ import useSignOut from "@/features/auth/hooks/useSignOut";
 import Avatar from "@/features/user/components/Avatar";
 
 import { User } from "@/lib/zustand/interface";
+import { useRouter } from "expo-router";
 
 interface HomePageHeaderProps {
   user: User | null;
@@ -17,11 +18,15 @@ interface HomePageHeaderProps {
 const HomePageHeader = ({ user }: HomePageHeaderProps) => {
   const { handleSignOut } = useSignOut();
 
+  const router = useRouter();
+
   return (
     <View style={styles.header}>
       {/* Left Side */}
       <View style={styles.headerLeft}>
-        <Avatar />
+        <TouchableOpacity onPress={() => router.push("/(profile)")}>
+          <Avatar />
+        </TouchableOpacity>
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}>Welcome</Text>
           <Text style={styles.usernameText}>

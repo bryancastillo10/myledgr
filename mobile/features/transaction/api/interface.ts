@@ -1,6 +1,7 @@
 export interface BaseTransaction {
   title: string;
   amount: number;
+  icon: string;
   category: "CREDIT" | "DEBIT";
 }
 
