@@ -34,10 +34,19 @@ func (s *Service) CreateTransaction(req TransactionItem, userId string) (*Mutate
 	}
 
 	trId := utils.GenerateUUID()
+	
+	var icon string
+	if req.Icon == nil {
+		icon = "cash"
+	} else {
+		icon = *req.Icon
+	}
+
 	newItem := &models.Transaction{
 		ID:       trId,
 		UserID:   uid,
 		Title:    req.Title,
+		Icon:  	  &icon,
 		Amount:   req.Amount,
 		Category: req.Category,
 	}
