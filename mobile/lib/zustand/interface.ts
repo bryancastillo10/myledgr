@@ -3,6 +3,8 @@ export interface User {
   username: string;
   email: string;
   bio?: string | null;
+  address?: string | null;
+  theme: string;
   role: "ADMIN" | "PUBLIC" | string;
 
   createdAt: string;
