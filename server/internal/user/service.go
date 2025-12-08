@@ -35,8 +35,8 @@ func (s *Service) GetUser(id string) (*UserDetail, error) {
 		Username: user.Username,
 		Email:    user.Email,
 		Bio:      user.Bio,
-		Address: user.Address,
-		Theme:   user.Theme,
+		Address:  user.Address,
+		Theme:    user.Theme,
 		Role:     Role(user.Role),
 	}
 

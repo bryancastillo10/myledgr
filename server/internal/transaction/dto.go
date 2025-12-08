@@ -9,7 +9,7 @@ type TransactionItem struct {
 	Title    string                     `json:"title"`
 	Amount   float64                    `json:"amount"`
 	Category models.TransactionCategory `json:"category"`
-	Icon     *string					`json:"icon,omitempty"`
+	Icon     *string                    `json:"icon,omitempty"`
 
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
@@ -38,7 +38,7 @@ func MapTransactionToResponse(tr models.Transaction) TransactionItemWithId {
 			Title:     tr.Title,
 			Amount:    tr.Amount,
 			Category:  tr.Category,
-			Icon:   	tr.Icon,
+			Icon:      tr.Icon,
 			CreatedAt: tr.CreatedAt,
 			UpdatedAt: tr.UpdatedAt,
 		},
