@@ -2,6 +2,7 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { COLORS } from "@/constants/colors";
 
