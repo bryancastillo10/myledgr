@@ -1,18 +1,15 @@
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
+import TextHeader from "@/components/static/TextHeader";
 
 import { useAuthStore } from "@/lib/zustand/user";
 
 import AccountSettingsHeader from "@/features/user/components/AccountSettingsHeader";
-import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "@/constants/colors";
+import ProfileRow from "@/features/user/components/ProfileRow";
+import Button from "@/components/ui/Button";
+
+import { formatStringRender } from "@/features/user/utils/formatRole";
 
 export default function ViewProfile() {
   const user = useAuthStore((state) => state.user);
@@ -26,16 +23,44 @@ export default function ViewProfile() {
         <AccountSettingsHeader />
 
         <View style={styles.content}>
-          <TouchableOpacity style={styles.tab}>
-            <View style={styles.sides}>
-              <Ionicons name="person" size={24} color={COLORS.primary} />
-              <Text>Username</Text>
-            </View>
-            <View style={styles.sides}>
-              <Text>Slash</Text>
-              <Ionicons name="chevron-forward" size={24} />
-            </View>
-          </TouchableOpacity>
+          <ProfileRow label="Username" value={user.username} icon="person" />
+
+          <ProfileRow label="Email" value={user.email} icon="mail" />
+
+          <ProfileRow label="Bio" value={user?.bio || null} icon="ribbon" />
+
+          <ProfileRow
+            label="Location"
+            value={user?.address || null}
+            icon="location"
+          />
+
+          <ProfileRow
+            label="User Role"
+            value={formatStringRender(user.role) || null}
+            icon="shield"
+          />
+        </View>
+
+        <View style={[styles.content, { marginVertical: 14 }]}>
+          <TextHeader text="App Settings" />
+
+          <ProfileRow
+            label="App Theme"
+            value={formatStringRender(user.theme)}
+            icon="color-palette"
+          />
+          <ProfileRow label="Currency" value="$" icon="cash" />
+        </View>
+
+        <View style={[styles.content, { marginVertical: 14 }]}>
+          <TextHeader text="Advanced" />
+
+          <Button icon="key" textButton="Reset Password" onPress={() => {}} />
+
+          <Button icon="log-out" textButton="Sign Out" onPress={() => {}} />
+
+          <Button icon="trash" textButton="Delete Account" onPress={() => {}} />
         </View>
       </ScrollView>
     </ScreenWrapper>
@@ -45,15 +70,5 @@ export default function ViewProfile() {
 const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
-  },
-  tab: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 12,
-  },
-  sides: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
   },
 });
