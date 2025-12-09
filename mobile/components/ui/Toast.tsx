@@ -3,14 +3,16 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
 
+import { ToastStatus } from "@/lib/zustand/interface";
+
 interface ToastProps {
-  status: "success" | "error" | "default";
+  status: ToastStatus;
   message: string;
   handleClose: () => void;
 }
 
 const Toast = ({ handleClose, message, status }: ToastProps) => {
-  const getStatusStyle = (status: "success" | "error" | "default") => {
+  const getStatusStyle = (status: ToastStatus) => {
     switch (status) {
       case "success":
         return {

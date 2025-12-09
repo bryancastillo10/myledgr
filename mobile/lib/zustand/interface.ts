@@ -1,3 +1,4 @@
+// User State
 export interface User {
   id: string;
   username: string;
@@ -20,6 +21,7 @@ export interface AuthState {
   isAuthenticated: () => boolean;
 }
 
+// Modal State
 export interface ModalState {
   isOpen: boolean;
   modalType: string | null;
@@ -27,7 +29,22 @@ export interface ModalState {
   setCloseModal: () => void;
 }
 
+// Theme State
 export interface ThemeState {
   theme: string;
   setTheme: (theme: string) => void;
+}
+
+// Toast State
+export type ToastStatus = "success" | "error" | "default";
+
+export interface ToastState {
+  isVisible: boolean;
+  message: string;
+  status: ToastStatus;
+}
+
+export interface ToastActions {
+  showToast: (message: string, status?: ToastStatus) => void;
+  hideToast: () => void;
 }
