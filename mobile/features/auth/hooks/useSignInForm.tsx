@@ -5,6 +5,7 @@ import { authApi } from "@/features/auth/api/request";
 import { userApi } from "@/features/user/api/request";
 
 import { useAuthStore } from "@/lib/zustand/user";
+import { useToastStore } from "@/lib/zustand/toast";
 
 const initialSignIn = {
   email: "",
@@ -14,10 +15,10 @@ const initialSignIn = {
 const useSignInForm = () => {
   const [signInData, setSignInData] = useState(initialSignIn);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
 
   const router = useRouter();
   const { setUser } = useAuthStore();
+  const { showToast } = useToastStore();
 
   const onChangeData = (key: keyof typeof initialSignIn) => (value: string) => {
     setSignInData((prev) => ({
@@ -26,19 +27,14 @@ const useSignInForm = () => {
     }));
   };
 
-  const handleCloseErrror = () => {
-    setError("");
-  };
-
   const handleSubmit = async () => {
     if (signInData.email === "" || signInData.password === "") {
-      setError("Email and password are required");
+      showToast("Email and password requrired to be filled up", "default");
       return;
     }
 
     try {
       setLoading(true);
-      setError("");
 
       const res = await authApi.signIn(signInData);
       const currUser = await userApi.getUser();
@@ -47,9 +43,11 @@ const useSignInForm = () => {
 
       if (res && res.user) {
         router.push("/(root)");
+        showToast("Welcome to MyLedgr", "success");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign in failed");
+      console.error(err);
+      showToast("Failed to sign in", "error");
     } finally {
       setLoading(false);
     }
@@ -57,10 +55,8 @@ const useSignInForm = () => {
 
   return {
     signInData,
-    error,
     loading,
     onChangeData,
-    handleCloseErrror,
     handleSubmit,
   };
 };
