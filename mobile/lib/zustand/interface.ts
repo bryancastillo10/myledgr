@@ -4,6 +4,7 @@ export interface User {
   email: string;
   bio?: string | null;
   address?: string | null;
+  currency: string;
   theme: string;
   role: "ADMIN" | "PUBLIC" | string;
 
