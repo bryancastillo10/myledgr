@@ -19,3 +19,15 @@ export interface AuthState {
 
   isAuthenticated: () => boolean;
 }
+
+export interface ModalState {
+  isOpen: boolean;
+  modalType: string | null;
+  setOpenModal: (type: string) => void;
+  setCloseModal: () => void;
+}
+
+export interface ThemeState {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
