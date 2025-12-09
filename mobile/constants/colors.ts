@@ -1,3 +1,16 @@
+type ThemeColors<T> = {
+  primary: T;
+  background: T;
+  text: T;
+  border: T;
+  white: T;
+  textLight: T;
+  expense: T;
+  income: T;
+  card: T;
+  shadow: T;
+};
+
 const coffeeTheme = {
   primary: "#8B593E",
   background: "#FFF8F3",
@@ -57,4 +70,4 @@ export const THEMES = {
   ocean: oceanTheme,
 };
 
-export const COLORS = THEMES.forest;
+export const COLORS: ThemeColors<string> = THEMES.forest;
