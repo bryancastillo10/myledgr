@@ -1,6 +1,5 @@
-import { View, ScrollView, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
 import { styles } from "@/features/auth/styles/auth";
 
 import { RevenueImageTwo } from "@/assets/svg";
@@ -11,24 +10,18 @@ import Button from "@/components/ui/Button";
 
 import useSignInForm from "@/features/auth/hooks/useSignInForm";
 import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
-import Toast from "@/components/ui/Toast";
+
+import ScreenWrapper from "@/components/layout/ScreenWrapper";
 
 export default function SignInPage() {
-  const {
-    signInData,
-    error,
-    onChangeData,
-    loading,
-    handleCloseErrror,
-    handleSubmit,
-  } = useSignInForm();
+  const { signInData, onChangeData, loading, handleSubmit } = useSignInForm();
 
   if (loading) {
     return <AnimatedLoadingScreen text="Logging In" />;
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScreenWrapper>
       <Text style={styles.title}>MyLedgr App</Text>
       <View style={styles.illustration}>
         <RevenueImageTwo color={COLORS.primary} size={350} />
@@ -61,14 +54,6 @@ export default function SignInPage() {
           </TouchableOpacity>
         </Link>
       </View>
-
-      {error ? (
-        <Toast
-          message="Sample"
-          status="default"
-          handleClose={handleCloseErrror}
-        />
-      ) : null}
-    </ScrollView>
+    </ScreenWrapper>
   );
 }
