@@ -66,6 +66,9 @@ export default Toast;
 
 const styles = StyleSheet.create({
   container: {
+    position: "absolute",
+    bottom: 10,
+    left: 2,
     padding: 12,
     borderRadius: 8,
     borderLeftWidth: 4,
