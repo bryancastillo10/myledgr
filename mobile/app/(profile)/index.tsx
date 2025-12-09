@@ -39,6 +39,14 @@ export default function ViewProfile() {
             label="User Role"
             value={formatStringRender(user.role) || null}
             icon="shield"
+            canEdit={false}
+          />
+
+          <ProfileRow
+            label="Account Created"
+            value={user.createdAt}
+            icon="calendar"
+            canEdit={false}
           />
         </View>
 
@@ -50,7 +58,7 @@ export default function ViewProfile() {
             value={formatStringRender(user.theme)}
             icon="color-palette"
           />
-          <ProfileRow label="Currency" value="$" icon="cash" />
+          <ProfileRow label="Currency" value={user.currency} icon="cash" />
         </View>
 
         <View style={[styles.content, { marginVertical: 14 }]}>
@@ -60,7 +68,12 @@ export default function ViewProfile() {
 
           <Button icon="log-out" textButton="Sign Out" onPress={() => {}} />
 
-          <Button icon="trash" textButton="Delete Account" onPress={() => {}} />
+          <Button
+            icon="trash"
+            textButton="Delete Account"
+            variant="danger"
+            onPress={() => {}}
+          />
         </View>
       </ScrollView>
     </ScreenWrapper>
