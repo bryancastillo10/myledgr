@@ -9,7 +9,7 @@ import AccountSettingsHeader from "@/features/user/components/AccountSettingsHea
 import ProfileRow from "@/features/user/components/ProfileRow";
 import Button from "@/components/ui/Button";
 
-import { formatStringRender } from "@/features/user/utils/formatRole";
+import { formatStringRender, formatDate } from "@/features/user/utils";
 
 export default function ViewProfile() {
   const user = useAuthStore((state) => state.user);
@@ -44,7 +44,7 @@ export default function ViewProfile() {
 
           <ProfileRow
             label="Account Created"
-            value={user.createdAt}
+            value={formatDate(user.createdAt)}
             icon="calendar"
             canEdit={false}
           />

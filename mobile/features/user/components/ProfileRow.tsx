@@ -8,9 +8,15 @@ interface ProfileRowProps {
   label: string;
   value: string | null;
   icon: keyof typeof IconType.glyphMap;
+  canEdit?: boolean;
 }
 
-const ProfileRow = ({ label, value, icon }: ProfileRowProps) => {
+const ProfileRow = ({
+  label,
+  value,
+  icon,
+  canEdit = true,
+}: ProfileRowProps) => {
   return (
     <TouchableOpacity style={styles.tab}>
       <View style={styles.sides}>
@@ -18,8 +24,12 @@ const ProfileRow = ({ label, value, icon }: ProfileRowProps) => {
         <Text style={styles.fieldLabel}>{label}</Text>
       </View>
       <View style={styles.sides}>
-        <Text style={styles.fieldValue}>{value || "None"}</Text>
-        <Ionicons name="chevron-forward" color={COLORS.primary} size={24} />
+        <Text style={[styles.fieldValue, !canEdit && { marginRight: 14 }]}>
+          {value || "None"}
+        </Text>
+        {canEdit && (
+          <Ionicons name="chevron-forward" color={COLORS.primary} size={24} />
+        )}
       </View>
     </TouchableOpacity>
   );
