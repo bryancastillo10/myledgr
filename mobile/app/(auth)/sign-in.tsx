@@ -11,6 +11,7 @@ import Button from "@/components/ui/Button";
 
 import useSignInForm from "@/features/auth/hooks/useSignInForm";
 import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
+import Toast from "@/components/ui/Toast";
 
 export default function SignInPage() {
   const {
@@ -62,13 +63,11 @@ export default function SignInPage() {
       </View>
 
       {error ? (
-        <View style={styles.errorBox}>
-          <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
-          <Text style={styles.errorText}>{error}</Text>
-          <TouchableOpacity onPress={handleCloseErrror}>
-            <Ionicons name="close" size={20} color={COLORS.expense} />
-          </TouchableOpacity>
-        </View>
+        <Toast
+          message="Sample"
+          status="default"
+          handleClose={handleCloseErrror}
+        />
       ) : null}
     </ScrollView>
   );
