@@ -5,23 +5,49 @@ import { Ionicons as IconType } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { COLORS } from "@/constants/colors";
+import { variants } from "@/constants/buttonVariant";
 
+type ButtonVariantType = "primary" | "gray" | "danger";
 interface ButtonProps {
   onPress: () => void;
-  icon?: keyof typeof IconType.glyphMap;
   textButton: string;
+  icon?: keyof typeof IconType.glyphMap;
+  variant?: ButtonVariantType;
+  textAlignment?: "flex-start" | "center" | "flex-end";
 }
 
-const Button = ({ onPress, textButton, icon }: ButtonProps) => {
+const Button = ({
+  onPress,
+  textButton,
+  icon,
+  variant = "primary",
+  textAlignment = "center",
+}: ButtonProps) => {
+  const getButtonVariant = (variant: ButtonVariantType) => {
+    switch (variant) {
+      case "primary":
+        return variants.primaryShade;
+      case "gray":
+        return variants.grayShade;
+
+      case "danger":
+        return variants.dangerShade;
+      default:
+        return variants.defaultShade;
+    }
+  };
+
   return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={onPress}
-      activeOpacity={0.85}
-    >
-      {icon && <Ionicons name={icon} size={18} color={COLORS.white} />}
-      <Text style={styles.buttonText}>{textButton}</Text>
-    </TouchableOpacity>
+    <LinearGradient colors={getButtonVariant(variant)} style={styles.button}>
+      <TouchableOpacity
+        style={{ flexDirection: "row", justifyContent: textAlignment }}
+        onPress={onPress}
+        activeOpacity={0.85}
+      >
+        {icon && <Ionicons name={icon} size={18} color={COLORS.white} />}
+        <Text style={styles.buttonText}>{textButton}</Text>
+      </TouchableOpacity>
+    </LinearGradient>
   );
 };
 
@@ -29,11 +55,8 @@ export default Button;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: COLORS.primary,
-    flexDirection: "row",
     borderRadius: 16,
     padding: 18,
-    justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
     marginBottom: 20,
