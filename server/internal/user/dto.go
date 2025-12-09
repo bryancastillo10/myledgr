@@ -1,5 +1,7 @@
 package user
 
+import "time"
+
 type Role string
 
 const (
@@ -14,6 +16,7 @@ type UserDetail struct {
 	Address  *string `json:"address"`
 	Theme    *string `json:"theme"`
 	Currency *string `json:"currency"`
+	CreatedAt time.Time `json:"createdAt"`
 	Role     Role    `json:"role"`
 }
 

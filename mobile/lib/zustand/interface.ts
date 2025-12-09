@@ -4,6 +4,7 @@ export interface User {
   email: string;
   bio?: string | null;
   address?: string | null;
+  currency: string;
   theme: string;
   role: "ADMIN" | "PUBLIC" | string;
 
@@ -17,4 +18,16 @@ export interface AuthState {
   clearUser: () => void;
 
   isAuthenticated: () => boolean;
+}
+
+export interface ModalState {
+  isOpen: boolean;
+  modalType: string | null;
+  setOpenModal: (type: string) => void;
+  setCloseModal: () => void;
+}
+
+export interface ThemeState {
+  theme: string;
+  setTheme: (theme: string) => void;
 }

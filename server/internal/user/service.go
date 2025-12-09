@@ -39,6 +39,7 @@ func (s *Service) GetUser(id string) (*UserDetail, error) {
 		Theme:    user.Theme,
 		Currency: user.Currency,
 		Role:     Role(user.Role),
+		CreatedAt: user.CreatedAt,
 	}
 
 	return profile, nil
@@ -60,6 +61,7 @@ func (s *Service) GetAllUsers() ([]UserDetail, error) {
 			Theme:    user.Theme,
 			Currency: user.Currency,
 			Role:     Role(user.Role),
+			CreatedAt: user.CreatedAt,
 		})
 	}
 
