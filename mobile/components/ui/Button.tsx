@@ -40,7 +40,7 @@ const Button = ({
   return (
     <LinearGradient colors={getButtonVariant(variant)} style={styles.button}>
       <TouchableOpacity
-        style={{ flexDirection: "row", justifyContent: textAlignment }}
+        style={[styles.content, { justifyContent: textAlignment }]}
         onPress={onPress}
         activeOpacity={0.85}
       >
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 16,
     padding: 18,
-    alignItems: "center",
     marginTop: 10,
     marginBottom: 20,
     shadowColor: COLORS.primary,
@@ -70,6 +69,10 @@ const styles = StyleSheet.create({
     elevation: 8,
     borderWidth: 0.5,
     borderBottomWidth: 0,
+  },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   buttonText: {
