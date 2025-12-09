@@ -1,4 +1,3 @@
-import { View, StyleSheet } from "react-native";
 import Toast from "@/components/ui/Toast";
 import { useEffect } from "react";
 
