@@ -19,6 +19,12 @@ export default function HomePage() {
 
   const { transactions, loading } = useGetTransactions();
 
+  const TransactionLoading = (
+    <View style={styles.loader}>
+      <PingCircles size="xl" />
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -32,9 +38,7 @@ export default function HomePage() {
         <TransactionHeader />
 
         {loading ? (
-          <View style={styles.loader}>
-            <PingCircles size="xl" />
-          </View>
+          TransactionLoading
         ) : (
           <TransactionList transactions={transactions} />
         )}
