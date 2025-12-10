@@ -11,9 +11,12 @@ import {
 } from "@/features/transaction/components";
 
 import useGetUser from "@/features/user/hooks/useGetUser";
+import useGetTransactions from "@/features/transaction/hooks/useGetTransactions";
 
 export default function HomePage() {
   const { user } = useGetUser();
+
+  const { transactions, loading } = useGetTransactions();
 
   return (
     <View style={styles.container}>
@@ -26,7 +29,7 @@ export default function HomePage() {
 
         {/* Transaction Lists */}
         <TransactionHeader />
-        <TransactionList />
+        <TransactionList loading={loading} transactions={transactions} />
       </View>
     </View>
   );
