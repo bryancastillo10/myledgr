@@ -1,4 +1,5 @@
 import { ScrollView, View, StyleSheet } from "react-native";
+import { Redirect } from "expo-router";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import TextHeader from "@/components/static/TextHeader";
@@ -14,8 +15,7 @@ import { formatStringRender, formatDate } from "@/features/user/utils";
 export default function ViewProfile() {
   const user = useAuthStore((state) => state.user);
 
-  let routeLink;
-  if (!user) return routeLink == "/welcome";
+  if (!user) return <Redirect href="/welcome" />;
 
   return (
     <ScreenWrapper>
