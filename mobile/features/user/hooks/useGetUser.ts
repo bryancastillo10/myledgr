@@ -3,9 +3,11 @@ import { useRouter } from "expo-router";
 import { useAuthStore } from "@/lib/zustand/user";
 
 import { userApi } from "@/features/user/api/request";
+import { useThemeStore } from "@/lib/zustand/theme";
 
 const useGetUser = () => {
   const user = useAuthStore((state) => state.user);
+  const { setTheme } = useThemeStore();
 
   const router = useRouter();
 
@@ -22,6 +24,7 @@ const useGetUser = () => {
 
         if (user) {
           setUser(user);
+          setTheme(user.theme);
         }
       } catch (err) {
         console.error("Failed to get user profile", err);
