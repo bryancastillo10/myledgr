@@ -4,8 +4,10 @@ import { styles } from "@/features/transaction/styles/list";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants/colors";
 
-const TransactionItem = () => {
-  const amount = 200.2;
+import { BaseTransaction } from "@/features/transaction/api/interface";
+
+const TransactionItem = ({ item }: { item: BaseTransaction }) => {
+  const amount = 200.0;
 
   const isIncome = amount > 0;
 
@@ -30,7 +32,7 @@ const TransactionItem = () => {
               { color: isIncome ? COLORS.income : COLORS.expense },
             ]}
           >
-            {isIncome ? "+" : "-"}${Math.abs(amount).toFixed(2)}
+            {isIncome ? "+" : "-"}${item.amount.toFixed(2)}
           </Text>
           <Text style={styles.transactionDate}>Date Here</Text>
         </View>

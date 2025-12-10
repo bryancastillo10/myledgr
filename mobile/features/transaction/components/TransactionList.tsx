@@ -6,7 +6,13 @@ import { styles } from "@/features/transaction/styles/list";
 
 import TransactionItem from "@/features/transaction/components/TransactionItem";
 import NoTransactionsFound from "@/features/transaction/components/NoTransactionFound";
-const TransactionList = () => {
+import { BaseTransaction } from "@/features/transaction/api/interface";
+
+interface TransactionListProps {
+  transactions: BaseTransaction[] | [];
+}
+
+const TransactionList = ({ transactions }: TransactionListProps) => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const handleRefresh = async () => {
@@ -17,15 +23,11 @@ const TransactionList = () => {
 
   return (
     <View style={styles.transactionsHeaderContainer}>
-      {/* <View>
-        <Text>No Transactions Available</Text>
-      </View> */}
-
       <FlatList
         style={styles.transactionsList}
         contentContainerStyle={styles.transactionsListContent}
-        data={null}
-        renderItem={({ item }) => <TransactionItem />}
+        data={transactions}
+        renderItem={({ item }) => <TransactionItem item={item} />}
         ListEmptyComponent={<NoTransactionsFound />}
         showsVerticalScrollIndicator={false}
         refreshControl={

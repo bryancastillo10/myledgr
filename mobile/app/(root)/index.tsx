@@ -1,8 +1,9 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { styles } from "@/assets/styles/home";
 
 import HomePageHeader from "@/features/user/components/HomePageHeader";
+import PingCircles from "@/components/static/PingCircle";
 
 import {
   BalanceCard,
@@ -29,7 +30,14 @@ export default function HomePage() {
 
         {/* Transaction Lists */}
         <TransactionHeader />
-        <TransactionList loading={loading} transactions={transactions} />
+
+        {loading ? (
+          <View style={styles.loader}>
+            <PingCircles size="xl" />
+          </View>
+        ) : (
+          <TransactionList transactions={transactions} />
+        )}
       </View>
     </View>
   );

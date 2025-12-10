@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: 6,
+    marginVertical: 12,
   },
   recentTransactionText: {
     fontSize: 16,
