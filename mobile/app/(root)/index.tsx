@@ -1,8 +1,9 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { styles } from "@/assets/styles/home";
 
 import HomePageHeader from "@/features/user/components/HomePageHeader";
+import PingCircles from "@/components/static/PingCircle";
 
 import {
   BalanceCard,
@@ -11,9 +12,18 @@ import {
 } from "@/features/transaction/components";
 
 import useGetUser from "@/features/user/hooks/useGetUser";
+import useGetTransactions from "@/features/transaction/hooks/useGetTransactions";
 
 export default function HomePage() {
   const { user } = useGetUser();
+
+  const { transactions, loading } = useGetTransactions();
+
+  const TransactionLoading = (
+    <View style={styles.loader}>
+      <PingCircles size="xl" />
+    </View>
+  );
 
   return (
     <View style={styles.container}>
@@ -26,7 +36,12 @@ export default function HomePage() {
 
         {/* Transaction Lists */}
         <TransactionHeader />
-        <TransactionList />
+
+        {loading ? (
+          TransactionLoading
+        ) : (
+          <TransactionList transactions={transactions} />
+        )}
       </View>
     </View>
   );

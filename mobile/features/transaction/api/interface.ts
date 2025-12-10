@@ -3,6 +3,7 @@ export interface BaseTransaction {
   amount: number;
   icon: string;
   category: "CREDIT" | "DEBIT";
+  createdAt: string;
 }
 
 export interface MutateTransactionResponse {

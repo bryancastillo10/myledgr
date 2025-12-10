@@ -24,7 +24,7 @@ const HomePageHeader = ({ user }: HomePageHeaderProps) => {
     <View style={styles.header}>
       {/* Left Side */}
       <View style={styles.headerLeft}>
-        <TouchableOpacity onPress={() => router.push("/(profile)")}>
+        <TouchableOpacity onPress={() => router.push("/(profile)/view")}>
           <Avatar />
         </TouchableOpacity>
         <View style={styles.welcomeContainer}>
