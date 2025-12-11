@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { COLORS } from "@/constants/colors";
@@ -12,10 +12,10 @@ const ScreenWrapper = ({ children }: ScreenWrapperProps) => {
   const inset = useSafeAreaInsets();
 
   return (
-    <ScrollView style={[styles.screen, { paddingTop: inset.top }]}>
+    <View style={[styles.screen, { paddingTop: inset.top }]}>
       {children}
       <ToastProvider />
-    </ScrollView>
+    </View>
   );
 };
 

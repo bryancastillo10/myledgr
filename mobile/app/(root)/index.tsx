@@ -13,6 +13,7 @@ import {
 
 import useGetUser from "@/features/user/hooks/useGetUser";
 import useGetTransactions from "@/features/transaction/hooks/useGetTransactions";
+import ScreenWrapper from "@/components/layout/ScreenWrapper";
 
 export default function HomePage() {
   const { user } = useGetUser();
@@ -26,7 +27,7 @@ export default function HomePage() {
   );
 
   return (
-    <View style={styles.container}>
+    <ScreenWrapper>
       <View style={styles.content}>
         {/* Header */}
         <HomePageHeader user={user} />
@@ -43,6 +44,6 @@ export default function HomePage() {
           <TransactionList transactions={transactions} />
         )}
       </View>
-    </View>
+    </ScreenWrapper>
   );
 }
