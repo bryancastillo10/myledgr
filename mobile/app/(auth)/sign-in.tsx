@@ -3,7 +3,7 @@ import { Link } from "expo-router";
 import { styles } from "@/features/auth/styles/auth";
 
 import { RevenueImageTwo } from "@/assets/svg";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
@@ -14,6 +14,8 @@ import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 
 export default function SignInPage() {
+  const { COLORS } = useColor();
+
   const { signInData, onChangeData, loading, handleSubmit } = useSignInForm();
 
   if (loading) {
@@ -22,12 +24,14 @@ export default function SignInPage() {
 
   return (
     <ScreenWrapper>
-      <Text style={styles.title}>MyLedgr App</Text>
+      <Text style={[styles.title, { color: COLORS.text }]}>MyLedgr App</Text>
       <View style={styles.illustration}>
         <RevenueImageTwo color={COLORS.primary} size={350} />
       </View>
       <View style={{ marginTop: 12 }}>
-        <Text style={styles.subtitle}>Sign In To Continue</Text>
+        <Text style={[styles.subtitle, { color: COLORS.text }]}>
+          Sign In To Continue
+        </Text>
       </View>
       <View style={styles.formContainer}>
         <Input
@@ -47,10 +51,14 @@ export default function SignInPage() {
       </View>
 
       <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>Don&apos;t have an account?</Text>
+        <Text style={[styles.footerText, { color: COLORS.text }]}>
+          Don&apos;t have an account?
+        </Text>
         <Link href="/sign-up" asChild>
           <TouchableOpacity>
-            <Text style={styles.linkText}>Sign Up</Text>
+            <Text style={[styles.linkText, { color: COLORS.primary }]}>
+              Sign Up
+            </Text>
           </TouchableOpacity>
         </Link>
       </View>

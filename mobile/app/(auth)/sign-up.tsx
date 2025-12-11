@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 import { CelebrationImage } from "@/assets/svg";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
@@ -12,7 +12,11 @@ import Button from "@/components/ui/Button";
 import useSignUpForm from "@/features/auth/hooks/useSignUpForm";
 import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
 
+import ScreenWrapper from "@/components/layout/ScreenWrapper";
+
 export default function SignUpPage() {
+  const { COLORS } = useColor();
+
   const {
     signUpData,
     error,
@@ -27,8 +31,8 @@ export default function SignUpPage() {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>MyLedgr App</Text>
+    <ScreenWrapper>
+      <Text style={[styles.title, { color: COLORS.text }]}>MyLedgr App</Text>
       <View style={styles.illustration}>
         <CelebrationImage color={COLORS.primary} size={350} />
       </View>
@@ -64,23 +68,15 @@ export default function SignUpPage() {
       </View>
 
       <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>Already have an account?</Text>
+        <Text style={[styles.footerText, { color: COLORS.text }]}>
+          Already have an account?
+        </Text>
         <Link href="/sign-in" asChild>
           <TouchableOpacity>
             <Text style={styles.linkText}>Sign In</Text>
           </TouchableOpacity>
         </Link>
       </View>
-
-      {error ? (
-        <View style={styles.errorBox}>
-          <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
-          <Text style={styles.errorText}>{error}</Text>
-          <TouchableOpacity onPress={handleCloseError}>
-            <Ionicons name="close" size={20} color={COLORS.expense} />
-          </TouchableOpacity>
-        </View>
-      ) : null}
-    </ScrollView>
+    </ScreenWrapper>
   );
 }
