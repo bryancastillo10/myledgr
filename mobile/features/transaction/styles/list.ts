@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   transactionsList: {
@@ -15,7 +14,6 @@ export const styles = StyleSheet.create({
   transactionTitle: {
     fontSize: 16,
     fontWeight: "500",
-    color: COLORS.text,
     marginBottom: 4,
   },
   transactionsHeaderContainer: {
@@ -27,7 +25,6 @@ export const styles = StyleSheet.create({
   },
   transactionCategory: {
     fontSize: 14,
-    color: COLORS.textLight,
   },
   categoryIconContainer: {
     width: 40,
@@ -48,22 +45,12 @@ export const styles = StyleSheet.create({
   },
   transactionDate: {
     fontSize: 12,
-    color: COLORS.textLight,
-  },
-
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: COLORS.text,
-    marginBottom: 15,
   },
   transactionCard: {
-    backgroundColor: COLORS.card,
     borderRadius: 12,
     marginBottom: 10,
     flexDirection: "row",
     alignItems: "center",
-    shadowColor: COLORS.shadow,
     shadowOffset: {
       width: 0,
       height: 1,
