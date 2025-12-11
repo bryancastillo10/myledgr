@@ -12,7 +12,7 @@ import Button from "@/components/ui/Button";
 
 import TextHeader from "@/components/static/TextHeader";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 interface ModalProps {
   isOpen: boolean;
@@ -38,11 +38,16 @@ const Modal = ({
   textHeader = "Modal Title",
   height = "30%",
 }: ModalProps) => {
+  const { COLORS } = useColor();
+
   return (
     <RNModal visible={isOpen} transparent animationType="fade">
       <View style={styles.overlay}>
         <KeyboardAvoidingView
-          style={[styles.container, { height }]}
+          style={[
+            styles.container,
+            { height, backgroundColor: COLORS.background },
+          ]}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <View style={styles.body}>
@@ -80,7 +85,6 @@ const styles = StyleSheet.create({
   container: {
     width: "78%",
     borderRadius: 24,
-    backgroundColor: COLORS.background,
     position: "relative",
     flexDirection: "column",
     justifyContent: "space-between",

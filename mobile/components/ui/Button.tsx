@@ -4,8 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { COLORS } from "@/constants/colors";
-import { variants } from "@/constants/buttonVariant";
+import useColor from "@/lib/providers/useColor";
 
 type ButtonVariantType = "primary" | "gray" | "danger";
 interface ButtonProps {
@@ -23,29 +22,48 @@ const Button = ({
   variant = "primary",
   textAlignment = "center",
 }: ButtonProps) => {
+  const { COLORS } = useColor();
+
   const getButtonVariant = (variant: ButtonVariantType) => {
+    const primaryShade = [COLORS.border, COLORS.primary, COLORS.text] as const;
+
+    const grayShade = ["#F0EDED", "#8C8989", "#2B2A2A"] as const;
+
+    const dangerShade = [COLORS.expense, "#EB4646", "#E67070"] as const;
+
+    const defaultShade = [
+      COLORS.primary,
+      COLORS.text,
+      COLORS.textLight,
+    ] as const;
+
     switch (variant) {
       case "primary":
-        return variants.primaryShade;
+        return primaryShade;
       case "gray":
-        return variants.grayShade;
+        return grayShade;
 
       case "danger":
-        return variants.dangerShade;
+        return dangerShade;
       default:
-        return variants.defaultShade;
+        return defaultShade;
     }
   };
 
   return (
-    <LinearGradient colors={getButtonVariant(variant)} style={styles.button}>
+    <LinearGradient
+      colors={getButtonVariant(variant)}
+      style={[styles.button, { shadowColor: COLORS.primary }]}
+    >
       <TouchableOpacity
         style={[styles.content, { justifyContent: textAlignment }]}
         onPress={onPress}
         activeOpacity={0.85}
       >
         {icon && <Ionicons name={icon} size={18} color={COLORS.white} />}
-        <Text style={styles.buttonText}>{textButton}</Text>
+        <Text style={[styles.buttonText, { color: COLORS.white }]}>
+          {textButton}
+        </Text>
       </TouchableOpacity>
     </LinearGradient>
   );
@@ -59,7 +77,6 @@ const styles = StyleSheet.create({
     padding: 18,
     marginTop: 10,
     marginBottom: 20,
-    shadowColor: COLORS.primary,
     shadowOffset: {
       width: 0,
       height: 6,
@@ -76,7 +93,6 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   buttonText: {
-    color: COLORS.white,
     fontSize: 17,
     fontWeight: "700",
     letterSpacing: 0.8,

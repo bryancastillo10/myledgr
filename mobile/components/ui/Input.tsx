@@ -1,6 +1,6 @@
 import { View, TextInput, Pressable, StyleSheet } from "react-native";
 import { useState } from "react";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 import { Ionicons } from "@expo/vector-icons";
 
 interface InputProps {
@@ -18,6 +18,8 @@ const Input = ({
   error = false,
   secureText = false,
 }: InputProps) => {
+  const { COLORS } = useColor();
+
   const [isRevealed, setIsRevealed] = useState<boolean>(secureText);
 
   const handleReveal = () => {
@@ -30,7 +32,15 @@ const Input = ({
         value={value}
         onChangeText={onChange}
         secureTextEntry={isRevealed}
-        style={[styles.input, error && styles.errorInput]}
+        style={[
+          styles.input,
+          error && { borderColor: COLORS.expense },
+          {
+            backgroundColor: COLORS.white,
+            borderColor: COLORS.border,
+            color: COLORS.text,
+          },
+        ]}
         placeholder={placeholder}
         placeholderTextColor={COLORS.primary}
       />
@@ -55,17 +65,11 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   input: {
-    backgroundColor: COLORS.white,
     borderRadius: 12,
     padding: 15,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: COLORS.border,
     fontSize: 16,
-    color: COLORS.text,
-  },
-  errorInput: {
-    borderColor: COLORS.expense,
   },
   iconContainer: {
     position: "absolute",
