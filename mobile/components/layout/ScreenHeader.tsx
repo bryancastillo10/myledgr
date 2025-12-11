@@ -3,7 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-const AccountSettingsHeader = () => {
+interface ScreenHeaderProps {
+  text: string;
+}
+
+const ScreenHeader = ({ text }: ScreenHeaderProps) => {
   const router = useRouter();
 
   return (
@@ -14,13 +18,13 @@ const AccountSettingsHeader = () => {
         </TouchableOpacity>
       </View>
       <View>
-        <Text style={styles.textHeader}>Profile</Text>
+        <Text style={styles.textHeader}>{text}</Text>
       </View>
     </View>
   );
 };
 
-export default AccountSettingsHeader;
+export default ScreenHeader;
 
 const styles = StyleSheet.create({
   headerContainer: {

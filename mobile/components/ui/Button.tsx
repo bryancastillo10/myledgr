@@ -53,7 +53,7 @@ const Button = ({
   return (
     <LinearGradient
       colors={getButtonVariant(variant)}
-      style={[styles.button, { shadowColor: COLORS.primary }]}
+      style={[styles.button, { shadowColor: COLORS.shadow }]}
     >
       <TouchableOpacity
         style={[styles.content, { justifyContent: textAlignment }]}
