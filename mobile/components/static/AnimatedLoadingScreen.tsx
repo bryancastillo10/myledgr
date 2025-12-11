@@ -14,8 +14,8 @@ const AnimatedLoadingScreen = ({ text }: LoadingScreenProps) => {
         <View style={styles.animationWrapper}>
           <PingCircles />
         </View>
+        <Text style={styles.text}>{text}</Text>
       </View>
-      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };
@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
   },
   text: {
     position: "absolute",
+    bottom: 32,
     justifyContent: "center",
     alignItems: "center",
-    top: 54,
     fontSize: 18,
     color: COLORS.text,
   },
