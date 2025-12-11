@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { styles } from "@/assets/styles/home";
 
 import HomePageHeader from "@/features/user/components/HomePageHeader";
+import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import PingCircles from "@/components/static/PingCircle";
 
 import {
@@ -13,12 +14,13 @@ import {
 
 import useGetUser from "@/features/user/hooks/useGetUser";
 import useGetTransactions from "@/features/transaction/hooks/useGetTransactions";
-import ScreenWrapper from "@/components/layout/ScreenWrapper";
+import useGetTransactionSummary from "@/features/transaction/hooks/useGetTransactionSummary";
 
 export default function HomePage() {
   const { user } = useGetUser();
 
   const { transactions, loading } = useGetTransactions();
+  const { summary, loading: summaryLoading } = useGetTransactionSummary();
 
   const TransactionLoading = (
     <View style={styles.loader}>
@@ -33,7 +35,11 @@ export default function HomePage() {
         <HomePageHeader user={user} />
 
         {/* Balance Card UI */}
-        <BalanceCard />
+        <BalanceCard
+          currency={user?.currency!}
+          transactionSummary={summary}
+          loading={summaryLoading}
+        />
 
         {/* Transaction Lists */}
         <TransactionHeader />
