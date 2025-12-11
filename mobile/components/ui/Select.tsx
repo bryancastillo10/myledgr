@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   selectText: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: "700",
     letterSpacing: 0.8,
   },

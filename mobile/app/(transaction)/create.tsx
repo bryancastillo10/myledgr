@@ -5,12 +5,14 @@ import { useRouter } from "expo-router";
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 
 import Select from "@/components/ui/Select";
-import { currencySymbols } from "@/constants/currency";
+
+import RadioButton from "@/components/ui/RadioButton";
 
 export default function CreateTransaction() {
   const router = useRouter();
 
   const [category, setCategory] = useState<string | null>(null);
+  const [radioSelected, setRadioSelected] = useState<boolean>(false);
 
   const categoryOptions = [
     { label: "Income", value: "CREDIT" },
@@ -25,6 +27,13 @@ export default function CreateTransaction() {
           options={categoryOptions}
           value={category}
           onChange={setCategory}
+        />
+
+        <RadioButton
+          isSelected={radioSelected}
+          label="Test Radio Button"
+          icon="beaker"
+          onSelect={() => setRadioSelected(!radioSelected)}
         />
 
         <Pressable onPress={() => router.back()}>
