@@ -7,6 +7,7 @@ import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import Select from "@/components/ui/Select";
 
 import RadioButton from "@/components/ui/RadioButton";
+import ScreenHeader from "@/components/layout/ScreenHeader";
 
 export default function CreateTransaction() {
   const router = useRouter();
@@ -21,6 +22,8 @@ export default function CreateTransaction() {
 
   return (
     <ScreenWrapper>
+      <ScreenHeader text="Add Transaction" />
+
       <View style={styles.container}>
         <Select
           label="Select Category"
@@ -35,10 +38,6 @@ export default function CreateTransaction() {
           icon="beaker"
           onSelect={() => setRadioSelected(!radioSelected)}
         />
-
-        <Pressable onPress={() => router.back()}>
-          <Text>Get Back</Text>
-        </Pressable>
       </View>
     </ScreenWrapper>
   );

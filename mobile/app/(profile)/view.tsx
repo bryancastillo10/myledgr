@@ -2,11 +2,11 @@ import { ScrollView, View, StyleSheet } from "react-native";
 import { Redirect } from "expo-router";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
+import ScreenHeader from "@/components/layout/ScreenHeader";
 import TextHeader from "@/components/static/TextHeader";
 
 import { useAuthStore } from "@/lib/zustand/user";
 
-import AccountSettingsHeader from "@/features/user/components/AccountSettingsHeader";
 import ProfileRow from "@/features/user/components/ProfileRow";
 import Button from "@/components/ui/Button";
 
@@ -20,7 +20,7 @@ export default function ViewProfile() {
   return (
     <ScreenWrapper>
       <ScrollView>
-        <AccountSettingsHeader />
+        <ScreenHeader text="Profile" />
 
         <View style={styles.content}>
           <ProfileRow label="Username" value={user.username} icon="person" />
