@@ -8,6 +8,7 @@ import { getCurrencySymbol } from "@/features/transaction/utils/getCurrencySymbo
 import { TransactionSummary } from "@/features/transaction/api/interface";
 
 import NoTransactionSummary from "@/features/transaction/components/NoTransactionSummary";
+import BalanceCardSkeleton from "@/components/static/BalanceCardSkeleton";
 
 interface BalanceCardProps {
   currency: string;
@@ -23,6 +24,10 @@ const BalanceCard = ({
   const { COLORS } = useColor();
 
   const symbol = getCurrencySymbol(currency);
+
+  if (loading) {
+    return <BalanceCardSkeleton />;
+  }
 
   if (!transactionSummary) {
     return <NoTransactionSummary currencySymbol={symbol} />;
