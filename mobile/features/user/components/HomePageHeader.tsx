@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 import { styles } from "@/features/user/styles/home";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 import useSignOut from "@/features/auth/hooks/useSignOut";
 import Avatar from "@/features/user/components/Avatar";
@@ -16,6 +16,7 @@ interface HomePageHeaderProps {
 }
 
 const HomePageHeader = ({ user }: HomePageHeaderProps) => {
+  const { COLORS } = useColor();
   const { handleSignOut } = useSignOut();
 
   const router = useRouter();
@@ -28,8 +29,10 @@ const HomePageHeader = ({ user }: HomePageHeaderProps) => {
           <Avatar />
         </TouchableOpacity>
         <View style={styles.welcomeContainer}>
-          <Text style={styles.welcomeText}>Welcome</Text>
-          <Text style={styles.usernameText}>
+          <Text style={[styles.welcomeText, { color: COLORS.textLight }]}>
+            Welcome
+          </Text>
+          <Text style={[styles.usernameText, { color: COLORS.text }]}>
             {user?.username || "User Name"}
           </Text>
         </View>

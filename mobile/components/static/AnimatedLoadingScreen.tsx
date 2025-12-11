@@ -1,21 +1,23 @@
 import { View, Text, StyleSheet } from "react-native";
 
 import PingCircles from "./PingCircle";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 interface LoadingScreenProps {
   text: string;
 }
 
 const AnimatedLoadingScreen = ({ text }: LoadingScreenProps) => {
+  const { COLORS } = useColor();
+
   return (
-    <View style={styles.overlay}>
+    <View style={[styles.overlay, { backgroundColor: COLORS.background }]}>
       <View style={styles.container}>
         <View style={styles.animationWrapper}>
           <PingCircles />
         </View>
+        <Text style={[styles.text, { color: COLORS.text }]}>{text}</Text>
       </View>
-      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };
@@ -27,7 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.background,
   },
 
   container: {
@@ -53,10 +54,9 @@ const styles = StyleSheet.create({
   },
   text: {
     position: "absolute",
+    bottom: 32,
     justifyContent: "center",
     alignItems: "center",
-    top: 54,
     fontSize: 18,
-    color: COLORS.text,
   },
 });

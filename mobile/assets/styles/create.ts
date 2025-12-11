@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    // backgroundColor: COLORS.background,
   },
   header: {
     flexDirection: "row",
@@ -12,12 +11,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    // borderBottomColor: COLORS.border,
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: "600",
-    color: COLORS.text,
+    // color: COLORS.text,
   },
   backButton: {
     padding: 5,
@@ -32,11 +31,11 @@ export const styles = StyleSheet.create({
   },
   saveButton: {
     fontSize: 16,
-    color: COLORS.primary,
+    // color: COLORS.primary,
     fontWeight: "600",
   },
   card: {
-    backgroundColor: COLORS.card,
+    // backgroundColor: COLORS.card,
     margin: 16,
     borderRadius: 16,
     padding: 16,
@@ -59,52 +58,52 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    // borderColor: COLORS.border,
   },
   typeButtonActive: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    // backgroundColor: COLORS.primary,
+    // borderColor: COLORS.primary,
   },
   typeIcon: {
     marginRight: 8,
   },
   typeButtonText: {
-    color: COLORS.text,
+    // color: COLORS.text,
     fontSize: 16,
     fontWeight: "500",
   },
   typeButtonTextActive: {
-    color: COLORS.white,
+    // color: COLORS.white,
   },
   amountContainer: {
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    // borderBottomColor: COLORS.border,
     paddingBottom: 16,
     marginBottom: 20,
   },
   currencySymbol: {
     fontSize: 32,
     fontWeight: "bold",
-    color: COLORS.text,
+    // color: COLORS.text,
     marginRight: 8,
   },
   amountInput: {
     flex: 1,
     fontSize: 36,
     fontWeight: "bold",
-    color: COLORS.text,
+    // color: COLORS.text,
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: COLORS.border,
+    // borderColor: COLORS.border,
     borderRadius: 12,
     padding: 4,
     marginBottom: 20,
-    backgroundColor: COLORS.white,
+    // backgroundColor: COLORS.white,
   },
   inputIcon: {
     marginHorizontal: 12,
@@ -113,12 +112,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 12,
     fontSize: 16,
-    color: COLORS.text,
+    // color: COLORS.text,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: "600",
-    color: COLORS.text,
+    // color: COLORS.text,
     marginBottom: 15,
     marginTop: 10,
     flexDirection: "row",
@@ -136,22 +135,22 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: COLORS.border,
-    backgroundColor: COLORS.white,
+    // borderColor: COLORS.border,
+    // backgroundColor: COLORS.white,
   },
   categoryButtonActive: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    // backgroundColor: COLORS.primary,
+    // borderColor: COLORS.primary,
   },
   categoryIcon: {
     marginRight: 6,
   },
   categoryButtonText: {
-    color: COLORS.text,
+    // color: COLORS.text,
     fontSize: 14,
   },
   categoryButtonTextActive: {
-    color: COLORS.white,
+    // color: COLORS.white,
   },
   loadingContainer: {
     padding: 20,

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Animated, View, StyleSheet, Easing } from "react-native";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 type PingSize = "sm" | "md" | "lg" | "xl";
 
@@ -16,6 +16,8 @@ const SIZE_MAP = {
 };
 
 const PingCircles = ({ size = "md" }: PingCirclesProps) => {
+  const { COLORS } = useColor();
+
   const wrapperSize = SIZE_MAP[size];
 
   // Animate values

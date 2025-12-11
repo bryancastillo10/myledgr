@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   header: {
@@ -25,22 +24,15 @@ export const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 14,
-    color: COLORS.textLight,
     marginBottom: 2,
   },
   usernameText: {
     fontSize: 16,
     fontWeight: "600",
-    color: COLORS.text,
   },
   headerRight: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-  },
-  headerTitle: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: COLORS.text,
   },
 });

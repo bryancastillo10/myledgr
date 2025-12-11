@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 interface ProfileRowProps {
   label: string;
@@ -17,11 +17,15 @@ const ProfileRow = ({
   icon,
   canEdit = true,
 }: ProfileRowProps) => {
+  const { COLORS } = useColor();
+
   return (
     <TouchableOpacity style={styles.tab}>
       <View style={styles.sides}>
         <Ionicons name={icon} size={24} color={COLORS.textLight} />
-        <Text style={styles.fieldLabel}>{label}</Text>
+        <Text style={[styles.fieldLabel, { color: COLORS.primary }]}>
+          {label}
+        </Text>
       </View>
       <View style={styles.sides}>
         <Text style={[styles.fieldValue, !canEdit && { marginRight: 14 }]}>
@@ -51,7 +55,6 @@ const styles = StyleSheet.create({
   fieldLabel: {
     fontSize: 16,
     fontWeight: "500",
-    color: COLORS.primary,
   },
   fieldValue: {
     fontSize: 14,
