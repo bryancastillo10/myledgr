@@ -3,16 +3,22 @@ import { styles } from "@/features/transaction/styles/list";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 
 import { BaseTransaction } from "@/features/transaction/api/interface";
 import { formatStringRender, formatDate } from "@/features/user/utils";
 
 const TransactionItem = ({ item }: { item: BaseTransaction }) => {
+  const { COLORS } = useColor();
   const isIncome = item.category === "DEBIT";
 
   return (
-    <View style={styles.transactionCard}>
+    <View
+      style={[
+        styles.transactionCard,
+        { backgroundColor: COLORS.card, shadowColor: COLORS.shadow },
+      ]}
+    >
       <TouchableOpacity style={styles.transactionContent}>
         <View style={styles.categoryIconContainer}>
           <Ionicons
@@ -22,8 +28,12 @@ const TransactionItem = ({ item }: { item: BaseTransaction }) => {
           />
         </View>
         <View style={styles.transactionLeft}>
-          <Text style={styles.transactionTitle}>{item.title}</Text>
-          <Text style={styles.transactionCategory}>
+          <Text style={[styles.transactionTitle, { color: COLORS.text }]}>
+            {item.title}
+          </Text>
+          <Text
+            style={[styles.transactionCategory, { color: COLORS.textLight }]}
+          >
             {formatStringRender(item.category)}
           </Text>
         </View>
@@ -36,7 +46,7 @@ const TransactionItem = ({ item }: { item: BaseTransaction }) => {
           >
             {isIncome ? "+" : "-"}${item.amount.toFixed(2)}
           </Text>
-          <Text style={styles.transactionDate}>
+          <Text style={[styles.transactionDate, { color: COLORS.textLight }]}>
             {formatDate(item.createdAt)}
           </Text>
         </View>

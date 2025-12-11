@@ -1,43 +1,75 @@
 import { View, Text, StyleSheet } from "react-native";
 
-import { COLORS } from "@/constants/colors";
+import useColor from "@/lib/providers/useColor";
 import { Ionicons } from "@expo/vector-icons";
 
 const BalanceCard = () => {
+  const { COLORS } = useColor();
   const currency = "$";
 
   return (
-    <View style={styles.balanceCard}>
+    <View
+      style={[
+        styles.balanceCard,
+        {
+          backgroundColor: COLORS.card,
+          shadowColor: COLORS.shadow,
+          borderColor: COLORS.border,
+        },
+      ]}
+    >
       {/* Total Balance Header */}
-      <Text style={styles.balanceTitle}>Total Balance</Text>
-      <Text style={styles.balanceAmount}>{currency} 20,000</Text>
+      <Text style={[styles.balanceTitle, { color: COLORS.textLight }]}>
+        Total Balance
+      </Text>
+      <Text style={[styles.balanceAmount, { color: COLORS.primary }]}>
+        {currency} 20,000
+      </Text>
 
-      <View style={styles.balanceStats}>
+      <View style={[styles.balanceStats, { borderTopColor: COLORS.border }]}>
         <View style={styles.balanceStatItem}>
           {/* Left Side */}
           <View style={styles.balanceSubtitle}>
-            <View style={styles.statBadge}>
-              <Ionicons name="arrow-up" size={20} style={styles.statIcon} />
+            <View
+              style={[styles.statBadge, { backgroundColor: COLORS.textLight }]}
+            >
+              <Ionicons
+                name="arrow-up"
+                size={20}
+                style={[styles.statIcon, { color: COLORS.primary }]}
+              />
             </View>
-            <Text style={styles.balanceStatLabel}>Income</Text>
+            <Text
+              style={[styles.balanceStatLabel, { color: COLORS.textLight }]}
+            >
+              Income
+            </Text>
           </View>
           <Text style={[styles.balanceStatAmount, { color: COLORS.income }]}>
             + {currency} 1,000
           </Text>
         </View>
 
-        <View style={styles.statDivider} />
+        <View
+          style={[styles.statDivider, { backgroundColor: COLORS.border }]}
+        />
 
         <View style={styles.balanceStatItem}>
           <View style={styles.balanceSubtitle}>
-            <View style={styles.statBadge}>
+            <View
+              style={[styles.statBadge, { backgroundColor: COLORS.textLight }]}
+            >
               <Ionicons
                 name="arrow-down"
                 size={20}
-                style={[styles.statIcon, { color: COLORS.white }]}
+                style={[styles.statIcon, { color: COLORS.primary }]}
               />
             </View>
-            <Text style={styles.balanceStatLabel}>Expenses</Text>
+            <Text
+              style={[styles.balanceStatLabel, { color: COLORS.textLight }]}
+            >
+              Expenses
+            </Text>
           </View>
           <Text style={[styles.balanceStatAmount, { color: COLORS.expense }]}>
             - {currency} 1,000
@@ -52,11 +84,9 @@ export default BalanceCard;
 
 const styles = StyleSheet.create({
   balanceCard: {
-    backgroundColor: COLORS.card,
     borderRadius: 24,
     padding: 24,
     marginBottom: 20,
-    shadowColor: COLORS.shadow,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -65,11 +95,9 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 5,
     borderWidth: 1,
-    borderColor: COLORS.border,
   },
   balanceTitle: {
     fontSize: 14,
-    color: COLORS.textLight,
     marginBottom: 8,
     letterSpacing: 0.5,
     textTransform: "uppercase",
@@ -83,7 +111,6 @@ const styles = StyleSheet.create({
   balanceAmount: {
     fontSize: 40,
     fontWeight: "700",
-    color: COLORS.primary,
     marginBottom: 28,
     letterSpacing: -1,
   },
@@ -92,7 +119,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingTop: 20,
     borderTopWidth: 1,
-    borderTopColor: COLORS.border,
   },
   balanceStatItem: {
     flex: 1,
@@ -104,22 +130,19 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.textLight,
     marginBottom: 8,
   },
   statIcon: {
     fontSize: 18,
     fontWeight: "bold",
-    color: COLORS.primary,
   },
   statDivider: {
     width: 1,
-    backgroundColor: COLORS.border,
+
     marginHorizontal: 16,
   },
   balanceStatLabel: {
     fontSize: 13,
-    color: COLORS.textLight,
     marginBottom: 6,
     fontWeight: "500",
   },
