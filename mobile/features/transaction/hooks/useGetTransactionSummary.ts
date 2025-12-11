@@ -16,7 +16,7 @@ const useGetTransactionSummary = () => {
         const transactionSummary = await transactionApi.getTransactionSummary();
 
         if (transactionSummary) {
-          setSummary(summary);
+          setSummary(transactionSummary);
         }
       } catch (err) {
         console.error("Failed to get the transaction summary");

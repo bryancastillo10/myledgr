@@ -33,6 +33,7 @@ const BalanceCard = ({
     return <NoTransactionSummary currencySymbol={symbol} />;
   }
 
+  const { balance, credit, debit } = transactionSummary;
   return (
     <View
       style={[
@@ -49,7 +50,7 @@ const BalanceCard = ({
         Total Balance
       </Text>
       <Text style={[styles.balanceAmount, { color: COLORS.primary }]}>
-        {symbol} 20,000
+        {symbol} {balance}
       </Text>
 
       <View style={[styles.balanceStats, { borderTopColor: COLORS.border }]}>
@@ -72,7 +73,7 @@ const BalanceCard = ({
             </Text>
           </View>
           <Text style={[styles.balanceStatAmount, { color: COLORS.income }]}>
-            + {symbol} 1,000
+            + {symbol} {debit}
           </Text>
         </View>
 
@@ -98,7 +99,7 @@ const BalanceCard = ({
             </Text>
           </View>
           <Text style={[styles.balanceStatAmount, { color: COLORS.expense }]}>
-            - {currency} 1,000
+            - {symbol} {credit}
           </Text>
         </View>
       </View>
