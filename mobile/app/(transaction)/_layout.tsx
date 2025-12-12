@@ -9,6 +9,7 @@ export default function TransactionLayout() {
     >
       <Stack.Screen name="create" options={{ headerShown: false }} />
       <Stack.Screen name="edit" options={{ headerShown: false }} />
+      <Stack.Screen name="transaction/[id]" options={{ headerShown: false }} />
     </Stack>
   );
 }
