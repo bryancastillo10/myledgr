@@ -1,4 +1,10 @@
-import { View, TextInput, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  KeyboardTypeOptions,
+  Pressable,
+  StyleSheet,
+} from "react-native";
 import { useState } from "react";
 import useColor from "@/lib/providers/useColor";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,6 +15,7 @@ interface InputProps {
   error?: boolean;
   placeholder?: string;
   secureText?: boolean;
+  isNumeric?: boolean;
 }
 
 const Input = ({
@@ -17,8 +24,11 @@ const Input = ({
   placeholder = "Fill up",
   error = false,
   secureText = false,
+  isNumeric = false,
 }: InputProps) => {
   const { COLORS } = useColor();
+
+  const keyboardType: KeyboardTypeOptions = isNumeric ? "numeric" : "default";
 
   const [isRevealed, setIsRevealed] = useState<boolean>(secureText);
 
@@ -26,12 +36,18 @@ const Input = ({
     setIsRevealed(!isRevealed);
   };
 
+  const handleNumericChange = (text: string) => {
+    const cleanedText = text.replace(/[^0-9.]/g, "");
+    onChange(cleanedText);
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
         value={value}
-        onChangeText={onChange}
+        onChangeText={isNumeric ? handleNumericChange : onChange}
         secureTextEntry={isRevealed}
+        keyboardType={keyboardType}
         style={[
           styles.input,
           error && { borderColor: COLORS.expense },
