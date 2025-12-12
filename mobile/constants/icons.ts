@@ -24,6 +24,14 @@ export const categoryIcons = [
     value: "cash",
   },
   {
+    label: "Work",
+    value: "briefcase",
+  },
+  {
+    label: "Gadgets",
+    value: "hardware-chip",
+  },
+  {
     label: "Other",
     value: "ellipsis-horizontal",
   },
