@@ -13,7 +13,7 @@ const TransactionItem = ({ item }: { item: BaseTransaction }) => {
 
   const isIncome = item.category === "DEBIT";
 
-  const amount = item?.amount || 0.0;
+  const amount = Number(item?.amount) || 0.0;
 
   return (
     <View
