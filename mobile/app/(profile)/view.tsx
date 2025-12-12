@@ -78,8 +78,15 @@ export default function ViewProfile() {
             label="App Theme"
             value={formatStringRender(user.theme)}
             icon="color-palette"
+            onOpenModal={() => setOpenModal("theme")}
           />
-          <ProfileRow label="Currency" value={user.currency} icon="cash" />
+
+          <ProfileRow
+            label="Currency"
+            value={user.currency}
+            icon="cash"
+            onOpenModal={() => setOpenModal("currency")}
+          />
         </View>
 
         <View style={[styles.content, { marginVertical: 14 }]}>
