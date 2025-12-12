@@ -4,12 +4,14 @@ import { styles } from "@/features/transaction/styles/list";
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
 import useColor from "@/lib/providers/useColor";
+import { Href, useRouter } from "expo-router";
 
 import { BaseTransaction } from "@/features/transaction/api/interface";
 import { formatStringRender, formatDate } from "@/features/user/utils";
 
 const TransactionItem = ({ item }: { item: BaseTransaction }) => {
   const { COLORS } = useColor();
+  const router = useRouter();
 
   const isIncome = item.category === "DEBIT";
 
@@ -22,7 +24,12 @@ const TransactionItem = ({ item }: { item: BaseTransaction }) => {
         { backgroundColor: COLORS.card, shadowColor: COLORS.shadow },
       ]}
     >
-      <TouchableOpacity style={styles.transactionContent}>
+      <TouchableOpacity
+        onPress={() =>
+          router.push(`/(transaction)/transaction/${item.id}` as Href)
+        }
+        style={styles.transactionContent}
+      >
         <View style={styles.categoryIconContainer}>
           <Ionicons
             name={item.icon as keyof typeof IconType.glyphMap}

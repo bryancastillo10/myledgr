@@ -8,29 +8,30 @@ const useGetTransactions = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchTransaction = async () => {
-      try {
-        setLoading(true);
+  const fetchTransaction = async () => {
+    try {
+      setLoading(true);
 
-        const list = await transactionApi.getTransaction();
+      const list = await transactionApi.getTransaction();
 
-        if (list) {
-          setTransactions(list);
-        }
-      } catch (err) {
-        console.error("Failed to get the transaction lists");
-      } finally {
-        setLoading(false);
+      if (list) {
+        setTransactions(list);
       }
-    };
+    } catch (err) {
+      console.error("Failed to get the transaction lists");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchTransaction();
-  }, [setTransactions]);
+  }, []);
 
   return {
     transactions,
     loading,
+    refetch: fetchTransaction,
   };
 };
 
