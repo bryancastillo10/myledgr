@@ -10,7 +10,10 @@ import { formatStringRender, formatDate } from "@/features/user/utils";
 
 const TransactionItem = ({ item }: { item: BaseTransaction }) => {
   const { COLORS } = useColor();
+
   const isIncome = item.category === "DEBIT";
+
+  const amount = Number(item?.amount) || 0.0;
 
   return (
     <View
@@ -44,7 +47,7 @@ const TransactionItem = ({ item }: { item: BaseTransaction }) => {
               { color: isIncome ? COLORS.income : COLORS.expense },
             ]}
           >
-            {isIncome ? "+" : "-"}${item.amount.toFixed(2)}
+            {isIncome ? "+" : "-"}${amount.toFixed(2)}
           </Text>
           <Text style={[styles.transactionDate, { color: COLORS.textLight }]}>
             {formatDate(item.createdAt)}

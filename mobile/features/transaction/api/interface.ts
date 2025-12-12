@@ -1,6 +1,6 @@
 export interface BaseTransaction {
   title: string;
-  amount: number;
+  amount: number | string;
   icon: string;
   category: "CREDIT" | "DEBIT";
   createdAt: string;

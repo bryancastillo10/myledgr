@@ -22,19 +22,17 @@ const TransactionList = ({ transactions }: TransactionListProps) => {
   };
 
   return (
-    <View style={styles.transactionsHeaderContainer}>
-      <FlatList
-        style={styles.transactionsList}
-        contentContainerStyle={styles.transactionsListContent}
-        data={transactions}
-        renderItem={({ item }) => <TransactionItem item={item} />}
-        ListEmptyComponent={<NoTransactionsFound />}
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
-        }
-      />
-    </View>
+    <FlatList
+      style={styles.transactionsList}
+      contentContainerStyle={styles.transactionsListContent}
+      data={transactions}
+      renderItem={({ item }) => <TransactionItem item={item} />}
+      ListEmptyComponent={<NoTransactionsFound />}
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+      }
+    />
   );
 };
 

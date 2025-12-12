@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
   recentTransactionText: {
     fontSize: 16,
