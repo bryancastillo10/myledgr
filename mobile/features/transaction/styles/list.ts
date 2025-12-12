@@ -16,13 +16,6 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     marginBottom: 4,
   },
-  transactionsHeaderContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
-    paddingBottom: 5,
-  },
   transactionCategory: {
     fontSize: 14,
   },
