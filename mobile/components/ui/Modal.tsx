@@ -62,9 +62,18 @@ const Modal = ({
             {body}
           </View>
           <View style={styles.actionRow}>
-            <Button textButton={actionLeftLabel} onPress={actionLeft} />
+            <Button
+              variant="gray"
+              textButton={actionLeftLabel}
+              onPress={actionLeft}
+              containerPadding={12}
+            />
             {actionRight && actionRightLabel && (
-              <Button textButton={actionRightLabel} onPress={actionRight} />
+              <Button
+                textButton={actionRightLabel}
+                onPress={actionRight}
+                containerPadding={12}
+              />
             )}
           </View>
         </KeyboardAvoidingView>
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(240, 244, 255, 0.7)",
   },
   container: {
-    width: "78%",
+    width: "80%",
     borderRadius: 24,
     position: "relative",
     flexDirection: "column",
@@ -109,8 +118,8 @@ const styles = StyleSheet.create({
   actionRow: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    paddingVertical: 16,
-    gap: 12,
+    paddingVertical: 8,
+    gap: 14,
     width: "100%",
   },
 });
