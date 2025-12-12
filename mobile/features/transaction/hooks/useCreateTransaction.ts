@@ -6,7 +6,7 @@ import { transactionApi } from "@/features/transaction/api/request";
 import { useToastStore } from "@/lib/zustand/toast";
 import { router, useRouter } from "expo-router";
 
-type TransactionItem = Omit<BaseTransaction, "createdAt">;
+type TransactionItem = Omit<BaseTransaction, "createdAt" | "updatedAt">;
 
 const initialTransaction: TransactionItem = {
   title: "",

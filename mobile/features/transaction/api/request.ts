@@ -7,7 +7,7 @@ import {
 } from "@/features/transaction/api/interface";
 
 export const transactionApi = {
-  createTransaction: (body: Omit<BaseTransaction, "createdAt">) =>
+  createTransaction: (body: Omit<BaseTransaction, "createdAt" | "updatedAt">) =>
     apiRequest<MutateTransactionResponse>("/transaction", {
       method: "POST",
       body: JSON.stringify(body),

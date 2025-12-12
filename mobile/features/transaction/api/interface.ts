@@ -5,6 +5,7 @@ export interface BaseTransaction {
   icon: string;
   category: "CREDIT" | "DEBIT";
   createdAt: string;
+  updatedAt: string;
 }
 
 export interface MutateTransactionResponse {
