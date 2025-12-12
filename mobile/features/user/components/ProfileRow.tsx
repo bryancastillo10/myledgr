@@ -8,6 +8,7 @@ interface ProfileRowProps {
   label: string;
   value: string | null;
   icon: keyof typeof IconType.glyphMap;
+  onOpenModal?: () => void;
   canEdit?: boolean;
 }
 
@@ -15,12 +16,13 @@ const ProfileRow = ({
   label,
   value,
   icon,
+  onOpenModal,
   canEdit = true,
 }: ProfileRowProps) => {
   const { COLORS } = useColor();
 
-  return (
-    <TouchableOpacity style={styles.tab}>
+  const ReadOnlyProfileRow = (
+    <View style={styles.tab}>
       <View style={styles.sides}>
         <Ionicons name={icon} size={24} color={COLORS.textLight} />
         <Text style={[styles.fieldLabel, { color: COLORS.primary }]}>
@@ -28,14 +30,28 @@ const ProfileRow = ({
         </Text>
       </View>
       <View style={styles.sides}>
-        <Text style={[styles.fieldValue, !canEdit && { marginRight: 14 }]}>
+        <Text style={[styles.fieldValue, { marginRight: 14 }]}>
           {value || "None"}
         </Text>
-        {canEdit && (
-          <Ionicons name="chevron-forward" color={COLORS.primary} size={24} />
-        )}
+      </View>
+    </View>
+  );
+
+  return canEdit ? (
+    <TouchableOpacity style={styles.tab} onPress={onOpenModal}>
+      <View style={styles.sides}>
+        <Ionicons name={icon} size={24} color={COLORS.textLight} />
+        <Text style={[styles.fieldLabel, { color: COLORS.primary }]}>
+          {label}
+        </Text>
+      </View>
+      <View style={styles.sides}>
+        <Text style={styles.fieldValue}>{value || "None"}</Text>
+        <Ionicons name="chevron-forward" color={COLORS.primary} size={24} />
       </View>
     </TouchableOpacity>
+  ) : (
+    ReadOnlyProfileRow
   );
 };
 

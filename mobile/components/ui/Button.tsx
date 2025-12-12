@@ -13,6 +13,7 @@ interface ButtonProps {
   icon?: keyof typeof IconType.glyphMap;
   variant?: ButtonVariantType;
   textAlignment?: "flex-start" | "center" | "flex-end";
+  containerPadding?: number;
 }
 
 const Button = ({
@@ -21,6 +22,7 @@ const Button = ({
   icon,
   variant = "primary",
   textAlignment = "center",
+  containerPadding = 18,
 }: ButtonProps) => {
   const { COLORS } = useColor();
 
@@ -53,7 +55,10 @@ const Button = ({
   return (
     <LinearGradient
       colors={getButtonVariant(variant)}
-      style={[styles.button, { shadowColor: COLORS.shadow }]}
+      style={[
+        styles.button,
+        { shadowColor: COLORS.shadow, padding: containerPadding },
+      ]}
     >
       <TouchableOpacity
         style={[styles.content, { justifyContent: textAlignment }]}
@@ -74,7 +79,6 @@ export default Button;
 const styles = StyleSheet.create({
   button: {
     borderRadius: 16,
-    padding: 18,
     marginTop: 10,
     marginBottom: 20,
     shadowOffset: {

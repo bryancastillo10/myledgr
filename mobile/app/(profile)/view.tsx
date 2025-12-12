@@ -1,4 +1,4 @@
-import { ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
 import { Redirect } from "expo-router";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
@@ -6,14 +6,17 @@ import ScreenHeader from "@/components/layout/ScreenHeader";
 import TextHeader from "@/components/static/TextHeader";
 
 import { useAuthStore } from "@/lib/zustand/user";
+import { useModalStore } from "@/lib/zustand/modal";
 
 import ProfileRow from "@/features/user/components/ProfileRow";
+import EditProfileModal from "@/features/user/components/EditProfileModal";
 import Button from "@/components/ui/Button";
 
 import { formatStringRender, formatDate } from "@/features/user/utils";
 
 export default function ViewProfile() {
   const user = useAuthStore((state) => state.user);
+  const { setOpenModal } = useModalStore();
 
   if (!user) return <Redirect href="/welcome" />;
 
@@ -23,16 +26,32 @@ export default function ViewProfile() {
         <ScreenHeader text="Profile" />
 
         <View style={styles.content}>
-          <ProfileRow label="Username" value={user.username} icon="person" />
+          <ProfileRow
+            label="Username"
+            value={user.username}
+            icon="person"
+            onOpenModal={() => setOpenModal("username")}
+          />
 
-          <ProfileRow label="Email" value={user.email} icon="mail" />
+          <ProfileRow
+            label="Email"
+            value={user.email}
+            icon="mail"
+            canEdit={false}
+          />
 
-          <ProfileRow label="Bio" value={user?.bio || null} icon="ribbon" />
+          <ProfileRow
+            label="Bio"
+            value={user?.bio || null}
+            icon="ribbon"
+            onOpenModal={() => setOpenModal("bio")}
+          />
 
           <ProfileRow
             label="Location"
             value={user?.address || null}
             icon="location"
+            onOpenModal={() => setOpenModal("location")}
           />
 
           <ProfileRow
@@ -48,6 +67,8 @@ export default function ViewProfile() {
             icon="calendar"
             canEdit={false}
           />
+
+          <EditProfileModal user={user} />
         </View>
 
         <View style={[styles.content, { marginVertical: 14 }]}>
@@ -57,8 +78,15 @@ export default function ViewProfile() {
             label="App Theme"
             value={formatStringRender(user.theme)}
             icon="color-palette"
+            onOpenModal={() => setOpenModal("theme")}
           />
-          <ProfileRow label="Currency" value={user.currency} icon="cash" />
+
+          <ProfileRow
+            label="Currency"
+            value={user.currency}
+            icon="cash"
+            onOpenModal={() => setOpenModal("currency")}
+          />
         </View>
 
         <View style={[styles.content, { marginVertical: 14 }]}>
