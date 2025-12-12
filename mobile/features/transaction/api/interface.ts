@@ -1,4 +1,5 @@
 export interface BaseTransaction {
+  id?: string;
   title: string;
   amount: number | string;
   icon: string;
