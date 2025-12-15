@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "expo-router";
 import { useAuthStore } from "@/lib/zustand/user";
 
@@ -15,31 +15,33 @@ const useGetUser = () => {
 
   const { setUser } = useAuthStore();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setLoading(true);
+  const fetchUser = useCallback(async () => {
+    try {
+      setLoading(true);
 
-        const user = await userApi.getUser();
+      const user = await userApi.getUser();
 
-        if (user) {
-          setUser(user);
-          setTheme(user.theme);
-        }
-      } catch (err) {
-        console.error("Failed to get user profile", err);
-        router.push("/welcome");
-      } finally {
-        setLoading(false);
+      if (user) {
+        setUser(user);
+        setTheme(user.theme);
       }
-    };
+      return user;
+    } catch (err) {
+      console.error("Failed to get user profile", err);
+      router.push("/welcome");
+    } finally {
+      setLoading(false);
+    }
+  }, [setUser, setTheme, router]);
 
+  useEffect(() => {
     fetchUser();
-  }, [setUser, router]);
+  }, [fetchUser]);
 
   return {
     user,
     loading,
+    refreshUser: fetchUser,
   };
 };
 

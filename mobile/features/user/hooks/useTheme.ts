@@ -16,12 +16,11 @@ const useTheme = () => {
 
       const res = await userApi.updateUser({ theme: updateTheme });
 
-      if (res) {
-        setTheme(updateTheme);
-        showToast(res.message, "success");
-      } else {
-        showToast(res.message, "error");
+      if (!res) {
+        throw new Error("Empty response from server");
       }
+
+      setTheme(updateTheme);
     } catch (err) {
       console.error(err);
       showToast("Failed to update the theme", "error");

@@ -1,7 +1,7 @@
 import { apiRequest } from "@/lib/api-client/client";
 
 import { User } from "@/lib/zustand/interface";
-import { UpdateUserRequest, UpdateUserResponse } from "./interface";
+import { UpdateUserResponse } from "@/features/user/api/interface";
 
 export const userApi = {
   getUser: () =>
@@ -12,7 +12,7 @@ export const userApi = {
     apiRequest<User[]>("/user/all", {
       method: "GET",
     }),
-  updateUser: (body: UpdateUserRequest) =>
+  updateUser: (body: Partial<User>) =>
     apiRequest<UpdateUserResponse>("/user", {
       method: "PUT",
       body: JSON.stringify(body),
