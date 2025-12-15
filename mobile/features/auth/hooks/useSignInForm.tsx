@@ -39,7 +39,9 @@ const useSignInForm = () => {
       const res = await authApi.signIn(signInData);
       const currUser = await userApi.getUser();
 
-      setUser(currUser);
+      if (currUser) {
+        setUser(currUser);
+      }
 
       if (res && res.user) {
         router.push("/(root)");
