@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
+
+import { styles } from "@/features/user/styles/profilerow";
 import useColor from "@/lib/providers/useColor";
 
 interface ProfileRowProps {
@@ -56,23 +58,3 @@ const ProfileRow = ({
 };
 
 export default ProfileRow;
-
-const styles = StyleSheet.create({
-  tab: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 14,
-  },
-  sides: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  fieldLabel: {
-    fontSize: 16,
-    fontWeight: "500",
-  },
-  fieldValue: {
-    fontSize: 14,
-  },
-});

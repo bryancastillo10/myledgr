@@ -24,7 +24,7 @@ const useEditProfile = (user: User) => {
 
   const handleSubmit = async () => {
     try {
-      setLoading(false);
+      setLoading(true);
 
       const res = await userApi.updateUser(updateData);
 
