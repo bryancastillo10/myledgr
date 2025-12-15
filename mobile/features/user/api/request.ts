@@ -17,9 +17,8 @@ export const userApi = {
       method: "PUT",
       body: JSON.stringify(body),
     }),
-  deleteUser: (email: string) => {
+  deleteUser: (email: string) =>
     apiRequest<{ message: string }>(`/user/?email=${email}`, {
       method: "DELETE",
-    });
-  },
+    }),
 };
