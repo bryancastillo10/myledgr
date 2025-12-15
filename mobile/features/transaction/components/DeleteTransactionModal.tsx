@@ -4,8 +4,8 @@ import Modal from "@/components/ui/Modal";
 
 import { useModalStore } from "@/lib/zustand/modal";
 import useColor from "@/lib/providers/useColor";
-
 import useDeleteTransaction from "@/features/transaction/hooks/useDeleteTransaction";
+
 import { getCurrencySymbol } from "@/features/transaction/utils/getCurrencySymbol";
 
 import { DeleteTransactionModalProps } from "@/features/transaction/utils/deleteTransaction.type";
