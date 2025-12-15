@@ -1,26 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { User } from "@/lib/zustand/interface";
 
 import { userApi } from "@/features/user/api/request";
+import useGetUser from "@/features/user/hooks/useGetUser";
 
-type ModalField = "username" | "bio" | "location" | "theme" | "currency";
+import { useToastStore } from "@/lib/zustand/toast";
+import { useModalStore } from "@/lib/zustand/modal";
 
-const useEditProfile = (user: User, modalType: ModalField | null) => {
-  const [updateData, setUpdateData] = useState<Partial<User>>({});
+const useEditProfile = (user: User) => {
+  const [updateData, setUpdateData] = useState<Partial<User>>(user);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (user) {
-      setUpdateData(user);
-    }
-  }, [user]);
+  const { setCloseModal } = useModalStore();
+  const { showToast } = useToastStore();
+  const { refreshUser } = useGetUser();
 
-  const onChangeData = (value: string) => {
-    if (!modalType) return;
-
+  const onChangeData = (key: keyof User) => (value: string) => {
     setUpdateData((prev) => ({
       ...prev,
-      [modalType]: value,
+      [key]: value,
     }));
   };
 
@@ -28,17 +26,19 @@ const useEditProfile = (user: User, modalType: ModalField | null) => {
     try {
       setLoading(false);
 
-      const payload = {
-        [modalType as string]: updateData[modalType as keyof typeof updateData],
-      };
+      const res = await userApi.updateUser(updateData);
 
-      const res = await userApi.updateUser(payload);
       if (res) {
+        refreshUser();
+        showToast("Your profile has been updated", "success");
       }
+
+      setCloseModal();
     } catch (err) {
       console.error(err);
+      showToast("Failed to update user profile", "error");
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   };
 

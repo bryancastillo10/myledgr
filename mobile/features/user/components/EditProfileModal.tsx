@@ -1,10 +1,16 @@
 import Modal from "@/components/ui/Modal";
 import Input from "@/components/ui/Input";
+import Select from "@/components/ui/Select";
 
 import { useModalStore } from "@/lib/zustand/modal";
 import { User } from "@/lib/zustand/interface";
 
 import { formatStringRender } from "@/features/user/utils";
+import { themeOptions } from "@/constants/theme";
+
+import useEditProfile from "@/features/user/hooks/useEditProfile";
+import { currencyOptions } from "@/constants/currency";
+import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
 
 interface EditProfileModalProps {
   user: User;
@@ -12,23 +18,55 @@ interface EditProfileModalProps {
 
 const EditProfileModal = ({ user }: EditProfileModalProps) => {
   const { isOpen, modalType, setCloseModal } = useModalStore();
+  const { updateData, loading, onChangeData, handleSubmit } =
+    useEditProfile(user);
 
   const renderInputForm = () => {
     switch (modalType) {
       case "username":
-        return <Input value={user.username} onChange={() => {}} />;
+        return (
+          <Input
+            value={updateData?.username!}
+            onChange={onChangeData("username")}
+          />
+        );
       case "bio":
-        return <Input value={user?.bio!} onChange={() => {}} />;
+        return (
+          <Input value={updateData?.bio!} onChange={onChangeData("bio")} />
+        );
       case "location":
-        return <Input value={user?.address!} onChange={() => {}} />;
+        return (
+          <Input
+            value={updateData?.address!}
+            onChange={onChangeData("address")}
+          />
+        );
       case "theme":
-        return <Input value={user.theme} onChange={() => {}} />;
+        return (
+          <Select
+            options={themeOptions}
+            label={updateData?.theme}
+            value={updateData?.theme!}
+            onChange={onChangeData("theme")}
+          />
+        );
       case "currency":
-        return <Input value={user.currency} onChange={() => {}} />;
+        return (
+          <Select
+            options={currencyOptions}
+            label={updateData?.currency}
+            value={updateData?.currency!}
+            onChange={onChangeData("currency")}
+          />
+        );
       default:
         return null;
     }
   };
+
+  if (loading) {
+    return <AnimatedLoadingScreen text="Updating..." />;
+  }
 
   return (
     isOpen && (
@@ -38,7 +76,7 @@ const EditProfileModal = ({ user }: EditProfileModalProps) => {
         withHeader
         body={renderInputForm()}
         actionLeft={setCloseModal}
-        actionRight={setCloseModal}
+        actionRight={handleSubmit}
         actionRightLabel="Save"
         actionLeftLabel="Close"
       />
