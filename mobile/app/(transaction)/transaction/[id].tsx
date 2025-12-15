@@ -77,7 +77,12 @@ const TransactionItem = () => {
   return (
     <ScreenWrapper>
       <ScreenHeader text="Transaction Details" />
-      <TransactionAction />
+      <TransactionAction
+        id={transaction.id as string}
+        title={transaction.title}
+        currency={user?.currency || "USD"}
+        amount={transaction.amount as number}
+      />
       <View style={styles.container}>
         <View style={[styles.headerCard, { backgroundColor: COLORS.white }]}>
           <View
