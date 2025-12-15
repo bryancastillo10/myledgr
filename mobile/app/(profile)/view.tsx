@@ -14,6 +14,7 @@ import ProfileRow from "@/features/user/components/ProfileRow";
 import EditProfileModal from "@/features/user/components/EditProfileModal";
 
 import { formatStringRender, formatDate } from "@/features/user/utils";
+import DeleteProfileModal from "@/features/user/components/DeleteProfileModal";
 
 export default function ViewProfile() {
   const user = useAuthStore((state) => state.user);
@@ -112,8 +113,10 @@ export default function ViewProfile() {
             icon="trash"
             textButton="Delete Account"
             variant="danger"
-            onPress={() => {}}
+            onPress={() => setOpenModal("delete_account")}
           />
+
+          <DeleteProfileModal email={user.email} />
         </View>
       </ScrollView>
     </ScreenWrapper>
