@@ -1,4 +1,4 @@
-import { View, FlatList, RefreshControl } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { transactionApi } from "@/features/transaction/api/request";
 
 import { BaseTransaction } from "@/features/transaction/api/interface";
@@ -8,7 +8,7 @@ const useGetTransactions = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchTransaction = async () => {
+  const fetchTransaction = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -22,16 +22,16 @@ const useGetTransactions = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [setTransactions]);
 
   useEffect(() => {
     fetchTransaction();
-  }, []);
+  }, [fetchTransaction]);
 
   return {
     transactions,
     loading,
-    refetch: fetchTransaction,
+    refreshTransaction: fetchTransaction,
   };
 };
 
