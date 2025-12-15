@@ -17,7 +17,10 @@ import {
   rowStyles,
 } from "@/features/transaction/styles/transactionItem";
 
-import { NoTransactionsFound } from "@/features/transaction/components";
+import {
+  NoTransactionsFound,
+  TransactionAction,
+} from "@/features/transaction/components";
 import AnimatedLoadingScreen from "@/components/static/AnimatedLoadingScreen";
 
 interface DetailRowProps {
@@ -74,6 +77,7 @@ const TransactionItem = () => {
   return (
     <ScreenWrapper>
       <ScreenHeader text="Transaction Details" />
+      <TransactionAction />
       <View style={styles.container}>
         <View style={[styles.headerCard, { backgroundColor: COLORS.white }]}>
           <View
