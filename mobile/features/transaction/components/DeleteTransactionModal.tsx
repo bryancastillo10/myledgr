@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from "react-native";
 import Modal from "@/components/ui/Modal";
 
 import { useModalStore } from "@/lib/zustand/modal";
-import useDeleteProfile from "@/features/user/hooks/useDeleteProfile";
 import useColor from "@/lib/providers/useColor";
 
+import useDeleteTransaction from "@/features/transaction/hooks/useDeleteTransaction";
 import { getCurrencySymbol } from "@/features/transaction/utils/getCurrencySymbol";
 
 import { DeleteTransactionModalProps } from "@/features/transaction/utils/deleteTransaction.type";
@@ -17,6 +17,7 @@ const DeleteTransactionModal = ({
   amount,
 }: DeleteTransactionModalProps) => {
   const { COLORS } = useColor();
+  const { loading, handleConfirmDelete } = useDeleteTransaction(id);
   const { isOpen, modalType, setCloseModal } = useModalStore();
 
   const modalBody = (
@@ -37,11 +38,12 @@ const DeleteTransactionModal = ({
     modalType === "delete_transaction" && (
       <Modal
         isOpen={isOpen}
+        loading={loading}
         textHeader="Confirm Delete Transaction"
         withHeader
         body={modalBody}
         actionLeft={setCloseModal}
-        actionRight={setCloseModal}
+        actionRight={handleConfirmDelete}
         actionRightLabel="Delete"
         actionLeftLabel="Close"
       />
