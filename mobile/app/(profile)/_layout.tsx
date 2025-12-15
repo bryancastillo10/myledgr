@@ -6,7 +6,7 @@ export default function ProfileLayout() {
     <ProtectedRoute>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="view" />
-        <Stack.Screen name="edit" />
+        <Stack.Screen name="reset_password" />
       </Stack>
     </ProtectedRoute>
   );

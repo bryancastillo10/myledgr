@@ -1,5 +1,5 @@
-import { ScrollView, View, Text, StyleSheet } from "react-native";
-import { Redirect } from "expo-router";
+import { ScrollView, View, StyleSheet } from "react-native";
+import { Href, Redirect, useRouter } from "expo-router";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import ScreenHeader from "@/components/layout/ScreenHeader";
@@ -19,6 +19,7 @@ export default function ViewProfile() {
   const user = useAuthStore((state) => state.user);
   const { setOpenModal } = useModalStore();
 
+  const router = useRouter();
   const { handleSignOut } = useSignOut();
 
   if (!user) return <Redirect href="/welcome" />;
@@ -95,7 +96,11 @@ export default function ViewProfile() {
         <View style={[styles.content, { marginVertical: 14 }]}>
           <TextHeader text="Advanced" />
 
-          <Button icon="key" textButton="Reset Password" onPress={() => {}} />
+          <Button
+            icon="key"
+            textButton="Reset Password"
+            onPress={() => router.push("/(profile)/reset_password" as Href)}
+          />
 
           <Button
             icon="log-out"
