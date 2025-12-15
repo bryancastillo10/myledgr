@@ -1,4 +1,9 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  ActivityIndicator,
+  Text,
+  StyleSheet,
+} from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Ionicons as IconType } from "@expo/vector-icons";
@@ -14,6 +19,7 @@ interface ButtonProps {
   variant?: ButtonVariantType;
   textAlignment?: "flex-start" | "center" | "flex-end";
   containerPadding?: number;
+  loading?: boolean;
 }
 
 const Button = ({
@@ -23,6 +29,7 @@ const Button = ({
   variant = "primary",
   textAlignment = "center",
   containerPadding = 18,
+  loading = false,
 }: ButtonProps) => {
   const { COLORS } = useColor();
 
@@ -64,11 +71,18 @@ const Button = ({
         style={[styles.content, { justifyContent: textAlignment }]}
         onPress={onPress}
         activeOpacity={0.85}
+        disabled={loading}
       >
-        {icon && <Ionicons name={icon} size={18} color={COLORS.white} />}
-        <Text style={[styles.buttonText, { color: COLORS.white }]}>
-          {textButton}
-        </Text>
+        {loading ? (
+          <ActivityIndicator color={COLORS.white} />
+        ) : (
+          <>
+            {icon && <Ionicons name={icon} size={18} color={COLORS.white} />}
+            <Text style={[styles.buttonText, { color: COLORS.white }]}>
+              {textButton}
+            </Text>
+          </>
+        )}
       </TouchableOpacity>
     </LinearGradient>
   );
