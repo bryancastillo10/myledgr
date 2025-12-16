@@ -4,7 +4,7 @@ import { BaseTransaction } from "@/features/transaction/api/interface";
 import { transactionApi } from "@/features/transaction/api/request";
 
 import { useToastStore } from "@/lib/zustand/toast";
-import { router, useRouter } from "expo-router";
+import { router } from "expo-router";
 
 type TransactionItem = Omit<BaseTransaction, "createdAt" | "updatedAt">;
 

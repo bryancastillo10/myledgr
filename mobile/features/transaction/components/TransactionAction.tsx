@@ -30,7 +30,9 @@ const TransactionAction = ({
             shadowColor: COLORS.shadow,
           },
         ]}
-        onPress={() => router.push("/(transaction)/edit")}
+        onPress={() =>
+          router.push({ pathname: "/(transaction)/edit", params: { id: id } })
+        }
       >
         <Ionicons style={[{ color: COLORS.white }]} name="pencil" size={24} />
       </TouchableOpacity>

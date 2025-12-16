@@ -20,7 +20,10 @@ export const transactionApi = {
     apiRequest<TransactionSummary<number>>("/transaction/summary", {
       method: "GET",
     }),
-  updateTransaction: (body: BaseTransaction, id: string) =>
+  updateTransaction: (
+    body: Omit<BaseTransaction, "createdAt" | "updatedAt">,
+    id: string
+  ) =>
     apiRequest<MutateTransactionResponse>(`/transaction/${id}`, {
       method: "PUT",
       body: JSON.stringify(body),

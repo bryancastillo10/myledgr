@@ -12,8 +12,13 @@ import Button from "@/components/ui/Button";
 import useCreateTransaction from "@/features/transaction/hooks/useCreateTransaction";
 
 export default function CreateTransaction() {
-  const { transactionData, onChangeData, onSelectCategory, handleSubmit } =
-    useCreateTransaction();
+  const {
+    transactionData,
+    loading,
+    onChangeData,
+    onSelectCategory,
+    handleSubmit,
+  } = useCreateTransaction();
 
   return (
     <ScreenWrapper>
@@ -55,7 +60,11 @@ export default function CreateTransaction() {
           />
         </View>
         <View>
-          <Button textButton="Add Transaction" onPress={handleSubmit} />
+          <Button
+            loading={loading}
+            textButton="Add Transaction"
+            onPress={handleSubmit}
+          />
         </View>
       </View>
     </ScreenWrapper>
