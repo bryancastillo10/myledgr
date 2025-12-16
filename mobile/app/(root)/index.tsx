@@ -1,5 +1,5 @@
 import { View } from "react-native";
-
+import { useEffect } from "react";
 import { styles } from "@/assets/styles/home";
 
 import HomePageHeader from "@/features/user/components/HomePageHeader";
@@ -13,14 +13,18 @@ import {
 } from "@/features/transaction/components";
 
 import useGetUser from "@/features/user/hooks/useGetUser";
-import useGetTransactions from "@/features/transaction/hooks/useGetTransactions";
+import { useTransactionStore } from "@/lib/zustand/transaction";
 import useGetTransactionSummary from "@/features/transaction/hooks/useGetTransactionSummary";
 
 export default function HomePage() {
   const { user } = useGetUser();
 
-  const { transactions, loading } = useGetTransactions();
+  const { transactions, fetchTransaction, loading } = useTransactionStore();
   const { summary, loading: summaryLoading } = useGetTransactionSummary();
+
+  useEffect(() => {
+    fetchTransaction();
+  }, []);
 
   const TransactionLoading = (
     <View style={styles.loader}>

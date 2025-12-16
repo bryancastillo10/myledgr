@@ -1,10 +1,10 @@
 import { useLocalSearchParams } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import ScreenHeader from "@/components/layout/ScreenHeader";
 
-import useGetTransactions from "@/features/transaction/hooks/useGetTransactions";
+import { useTransactionStore } from "@/lib/zustand/transaction";
 import { useAuthStore } from "@/lib/zustand/user";
 import useColor from "@/lib/providers/useColor";
 
@@ -54,7 +54,7 @@ const TransactionItem = () => {
   const { user } = useAuthStore();
   const { COLORS } = useColor();
 
-  const { transactions, loading } = useGetTransactions();
+  const { transactions, loading } = useTransactionStore();
 
   const symbol = getCurrencySymbol(user?.currency || "USD");
   const transaction = transactions.find((item) => item.id === id);
