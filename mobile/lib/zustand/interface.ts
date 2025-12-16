@@ -1,3 +1,5 @@
+import { BaseTransaction } from "@/features/transaction/api/interface";
+
 // User State
 export interface User {
   id: string;
@@ -47,4 +49,11 @@ export interface ToastState {
 export interface ToastActions {
   showToast: (message: string, status?: ToastStatus) => void;
   hideToast: () => void;
+}
+
+// Transaction State
+export interface TransactionState {
+  transactions: BaseTransaction[];
+  loading: boolean;
+  fetchTransaction: () => Promise<void>;
 }
