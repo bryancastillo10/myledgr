@@ -5,9 +5,11 @@ import { transactionApi } from "@/features/transaction/api/request";
 
 import { useToastStore } from "@/lib/zustand/toast";
 import { useModalStore } from "@/lib/zustand/modal";
+import { useTransactionStore } from "@/lib/zustand/transaction";
 
 const useDeleteTransaction = (id: string) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const { fetchTransaction } = useTransactionStore();
 
   const router = useRouter();
   const { setCloseModal } = useModalStore();
@@ -22,6 +24,7 @@ const useDeleteTransaction = (id: string) => {
 
       if (res?.message) {
         router.back();
+        fetchTransaction();
         showToast("Transaction has been deleted", "success");
       }
     } catch (err) {
