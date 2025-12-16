@@ -33,6 +33,13 @@ const useUpdateTransaction = (id: string) => {
     }));
   };
 
+  const updatePayload = {
+    title: updateData.title,
+    amount: Number(updateData.amount),
+    icon: updateData.icon,
+    category: updateData.category,
+  };
+
   const handleSubmit = async () => {
     if (updateData.amount === 0) {
       showToast("Amount is required", "default");
@@ -45,7 +52,7 @@ const useUpdateTransaction = (id: string) => {
     }
     try {
       setLoading(true);
-      const res = await transactionApi.updateTransaction(updateData, id);
+      const res = await transactionApi.updateTransaction(updatePayload, id);
 
       if (res) {
         router.push("/(root)");
