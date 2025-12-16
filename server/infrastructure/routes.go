@@ -26,6 +26,13 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		authGroup.POST("/signout", authHandler.SignOut)
 	}
 
+	resetPasswordGroup := r.Group("/reset-password")
+	{
+		resetPasswordGroup.POST("/request")
+		resetPasswordGroup.POST("/verify-code")
+		resetPasswordGroup.PUT("/update")
+	}
+
 	transactionGroup := r.Group("/transaction", middleware.JWTAuthMiddleware())
 	{
 		transactionGroup.POST("/", transactionHandler.CreateTransaction)
