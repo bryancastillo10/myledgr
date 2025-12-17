@@ -2,21 +2,18 @@ import { View, Text, StyleSheet } from "react-native";
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import ScreenHeader from "@/components/layout/ScreenHeader";
 
+import { ResetPasswordProvider } from "@/features/resetpassword/context/resetPasswordStep";
+import ResetPasswordForm from "@/features/resetpassword/components/ResetPasswordForm";
+
 const ResetPassword = () => {
   return (
     <ScreenWrapper>
       <ScreenHeader text="Reset Password" />
-      <View style={styles.container}>
-        <Text>Reset Password Screen</Text>
-      </View>
+      <ResetPasswordProvider>
+        <ResetPasswordForm />
+      </ResetPasswordProvider>
     </ScreenWrapper>
   );
 };
 
 export default ResetPassword;
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-  },
-});
