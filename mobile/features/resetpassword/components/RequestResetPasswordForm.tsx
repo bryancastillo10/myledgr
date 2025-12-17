@@ -24,7 +24,7 @@ const RequestResetPasswordForm = () => {
         value={email}
         onChange={onEmailChange}
       />
-      <Button textButton="Send Verification Code" onPress={goForward} />
+      <Button textButton="Request Code" onPress={goForward} />
     </View>
   );
 };
