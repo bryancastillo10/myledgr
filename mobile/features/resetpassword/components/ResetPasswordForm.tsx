@@ -17,10 +17,12 @@ const stepComponents: Record<Steps, () => React.ReactNode> = {
 const ResetPasswordForm = () => {
   const { step } = useResetPasswordContext();
 
+  const totalSteps = Object.keys(stepComponents).length;
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>{stepComponents[step]()}</View>
-      <ProgressBar step={step} totalSteps={step + 2} />
+      <ProgressBar step={step} totalSteps={totalSteps} />
     </View>
   );
 };
