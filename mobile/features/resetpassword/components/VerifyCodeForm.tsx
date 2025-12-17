@@ -1,8 +1,10 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+
 import useColor from "@/lib/providers/useColor";
 import { useResetPasswordContext } from "@/features/resetpassword/context/resetPasswordStep";
+import useResetPassword from "@/features/resetpassword/hooks/useResetPassword";
 
 import CodeInput from "@/features/resetpassword/components/CodeInput";
 import Button from "@/components/ui/Button";
@@ -10,7 +12,14 @@ import Button from "@/components/ui/Button";
 const VerifyCodeForm = () => {
   const { COLORS } = useColor();
 
-  const { code, onCodeChange, goBack, goForward } = useResetPasswordContext();
+  const { email, code, onCodeChange, goBack } = useResetPasswordContext();
+
+  const { handleVerifyCode, loading } = useResetPassword();
+
+  const verifyReqBody = {
+    email,
+    code,
+  };
 
   return (
     <View style={styles.container}>
@@ -39,7 +48,11 @@ const VerifyCodeForm = () => {
         isCompleted={code.length === 5}
       />
 
-      <Button textButton="Verify Code" onPress={goForward} />
+      <Button
+        loading={loading}
+        textButton="Verify Code"
+        onPress={() => handleVerifyCode(verifyReqBody)}
+      />
     </View>
   );
 };

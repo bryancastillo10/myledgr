@@ -6,10 +6,13 @@ import { Ionicons } from "@expo/vector-icons";
 
 import useColor from "@/lib/providers/useColor";
 import { useResetPasswordContext } from "@/features/resetpassword/context/resetPasswordStep";
+import useResetPassword from "@/features/resetpassword/hooks/useResetPassword";
 
 const RequestResetPasswordForm = () => {
   const { COLORS } = useColor();
-  const { email, onEmailChange, goForward } = useResetPasswordContext();
+  const { email, onEmailChange } = useResetPasswordContext();
+
+  const { handleResetRequest, loading } = useResetPassword();
 
   return (
     <View style={styles.container}>
@@ -24,7 +27,11 @@ const RequestResetPasswordForm = () => {
         value={email}
         onChange={onEmailChange}
       />
-      <Button textButton="Request Code" onPress={goForward} />
+      <Button
+        loading={loading}
+        textButton="Request Code"
+        onPress={() => handleResetRequest(email)}
+      />
     </View>
   );
 };

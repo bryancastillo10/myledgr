@@ -9,10 +9,12 @@ import {
 } from "@/features/resetpassword/api/interface";
 
 import { useToastStore } from "@/lib/zustand/toast";
+import { useAuthStore } from "@/lib/zustand/user";
 
 const useResetPassword = () => {
   const { goForward } = useResetPasswordContext();
   const { showToast } = useToastStore();
+  const { user } = useAuthStore();
   const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -70,7 +72,11 @@ const useResetPassword = () => {
       const res = await resetPasswordApi.updatePassword(updateData);
 
       if (res) {
-        router.push("/(profile)/view");
+        if (user) {
+          router.push("/(profile)/view");
+        } else {
+          router.push("/");
+        }
         showToast("Password is updated", "success");
       }
     } catch (err) {

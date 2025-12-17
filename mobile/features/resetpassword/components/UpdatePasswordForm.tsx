@@ -6,10 +6,16 @@ import Button from "@/components/ui/Button";
 
 import useColor from "@/lib/providers/useColor";
 import { useResetPasswordContext } from "@/features/resetpassword/context/resetPasswordStep";
+import useResetPassword from "@/features/resetpassword/hooks/useResetPassword";
 
 const UpdatePasswordForm = () => {
   const { COLORS } = useColor();
-  const { updatePassword, onUpdatePasswordChange } = useResetPasswordContext();
+  const { email, updatePassword, onUpdatePasswordChange } =
+    useResetPasswordContext();
+
+  const { handleSubmitUpdate, loading } = useResetPassword();
+
+  const updateReq = { ...updatePassword, email };
 
   return (
     <View style={styles.container}>
@@ -32,7 +38,11 @@ const UpdatePasswordForm = () => {
         onChange={onUpdatePasswordChange("confirmPassword")}
       />
 
-      <Button textButton="Update Password" onPress={() => {}} />
+      <Button
+        loading={loading}
+        textButton="Update Password"
+        onPress={() => handleSubmitUpdate(updateReq)}
+      />
     </View>
   );
 };
