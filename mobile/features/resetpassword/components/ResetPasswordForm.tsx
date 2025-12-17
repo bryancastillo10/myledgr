@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   content: {
-    marginVertical: 8,
+    marginVertical: 16,
   },
 });

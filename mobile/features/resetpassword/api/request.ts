@@ -8,11 +8,11 @@ import {
   VerifyCodeRequest,
 } from "@/features/resetpassword/api/interface";
 
-const baseUrl = "reset-password";
+const baseUrl = "/reset-password";
 
 export const resetPasswordApi = {
   requestReset: (body: ResetPasswordRequest) =>
-    apiRequest<ResetPasswordStepResponse>(`${baseUrl}/reset`, {
+    apiRequest<ResetPasswordStepResponse>(`${baseUrl}/request`, {
       method: "POST",
       body: JSON.stringify(body),
     }),
