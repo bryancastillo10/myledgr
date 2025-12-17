@@ -31,9 +31,10 @@ const useResetPassword = () => {
       const res = await resetPasswordApi.requestReset({ email });
 
       if (res) {
-        goForward();
         showToast("Verification code sent", "success");
       }
+
+      goForward();
     } catch (err) {
       console.error(err);
       showToast("Failed to request email", "error");
@@ -49,9 +50,10 @@ const useResetPassword = () => {
       const res = await resetPasswordApi.verifyCode(req);
 
       if (res) {
-        goForward();
         showToast("Code verificastion is complete", "success");
       }
+
+      goForward();
     } catch (err) {
       console.error(err);
       showToast("Failed verification", "error");
