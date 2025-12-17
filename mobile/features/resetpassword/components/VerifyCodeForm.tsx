@@ -21,9 +21,14 @@ const VerifyCodeForm = () => {
 
       <View style={styles.header}>
         <Ionicons name="lock-closed-sharp" size={24} color={COLORS.primary} />
-        <Text style={[styles.caption, { color: COLORS.primary }]}>
-          Enter sent verification code
-        </Text>
+        <View style={styles.description}>
+          <Text style={[styles.caption, { color: COLORS.primary }]}>
+            Enter sent verification code
+          </Text>
+          <Text style={[styles.caption, { color: COLORS.primary }]}>
+            It expires in 5 minutes
+          </Text>
+        </View>
       </View>
 
       <CodeInput
@@ -56,6 +61,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
+  },
+  description: {
+    gap: 2,
   },
   caption: {
     fontSize: 14,
