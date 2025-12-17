@@ -16,9 +16,8 @@ interface ResetPasswordContext {
   onEmailChange: (text: string) => void;
   onCodeChange: (text: string) => void;
   onUpdatePasswordChange: (
-    field: keyof UpdatePasswordRequest,
-    text: string
-  ) => void;
+    key: keyof UpdatePasswordRequest
+  ) => (value: string) => void;
   goBack: () => void;
   goForward: () => void;
 }
@@ -67,15 +66,13 @@ export const ResetPasswordProvider: React.FC<{ children: React.ReactNode }> = ({
     setCode(text);
   };
 
-  const onUpdatePasswordChange = (
-    field: keyof UpdatePasswordRequest,
-    text: string
-  ) => {
-    setUpdatePassword((prev) => ({
-      ...prev,
-      [field]: text,
-    }));
-  };
+  const onUpdatePasswordChange =
+    (key: keyof UpdatePasswordRequest) => (value: string) => {
+      setUpdatePassword((prev) => ({
+        ...prev,
+        [key]: value,
+      }));
+    };
 
   const contexts = {
     step,

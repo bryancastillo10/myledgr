@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   caption: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
     letterSpacing: 0.5,
   },
