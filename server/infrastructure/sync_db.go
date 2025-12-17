@@ -10,6 +10,7 @@ func SyncDatabaseSchema() {
 
 	err := DB.AutoMigrate(
 		&models.User{},
+		&models.PasswordReset{},
 		&models.Transaction{},
 	)
 

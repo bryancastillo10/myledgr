@@ -2,6 +2,7 @@ package infrastructure
 
 import (
 	"myledgr-server/internal/auth"
+	"myledgr-server/internal/resetpassword"
 	"myledgr-server/internal/transaction"
 	"myledgr-server/internal/user"
 	"myledgr-server/middleware"
@@ -16,6 +17,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	})
 
 	authHandler := auth.NewHandler(db)
+	resetPasswordHandler := resetpassword.NewHandler(db)
 	userHandler := user.NewHandler(db)
 	transactionHandler := transaction.NewHandler(db)
 
@@ -24,6 +26,13 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		authGroup.POST("/signin", authHandler.SignIn)
 		authGroup.POST("/signup", authHandler.SignUp)
 		authGroup.POST("/signout", authHandler.SignOut)
+	}
+
+	resetPasswordGroup := r.Group("/reset-password")
+	{
+		resetPasswordGroup.POST("/request", resetPasswordHandler.RequestResetPassword)
+		resetPasswordGroup.POST("/verify-code", resetPasswordHandler.VerifyResetCode)
+		resetPasswordGroup.PUT("/update", resetPasswordHandler.UpdatePassword)
 	}
 
 	transactionGroup := r.Group("/transaction", middleware.JWTAuthMiddleware())
