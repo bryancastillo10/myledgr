@@ -1,6 +1,7 @@
 import { View, Text, FlatList, StyleSheet, RefreshControl } from "react-native";
 
 import { useState } from "react";
+import { styles } from "@/features/user/styles/userlist";
 
 import ScreenWrapper from "@/components/layout/ScreenWrapper";
 import ScreenHeader from "@/components/layout/ScreenHeader";
@@ -64,33 +65,3 @@ export default function UsersList() {
     </ScreenWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 16,
-    paddingHorizontal: 4,
-  },
-  headerText: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  countText: {
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  listContainer: {
-    paddingBottom: 16,
-  },
-  loader: {
-    height: 400,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
