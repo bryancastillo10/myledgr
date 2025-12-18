@@ -40,6 +40,11 @@ const HomePageHeader = ({ user }: HomePageHeaderProps) => {
 
       {/* Right Side */}
       <View style={styles.headerRight}>
+        {user?.role === "ADMIN" && (
+          <TouchableOpacity onPress={() => router.push("/(admin)/users")}>
+            <FontAwesome name="users" size={24} color={COLORS.primary} />
+          </TouchableOpacity>
+        )}
         <TouchableOpacity onPress={handleSignOut}>
           <FontAwesome name="sign-out" size={24} color={COLORS.primary} />
         </TouchableOpacity>
